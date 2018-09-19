@@ -1,5 +1,6 @@
 package cn.epsmart.recycling.device.utils;
 
+import android.content.Context;
 import android.os.Handler;
 
 import cn.epsmart.recycling.device.base.BaseApplication;
@@ -37,5 +38,17 @@ public class UIUtils {
             // 如果当前线程不是主线程
             getMainThreadHandler().post(task);
         }
+    }
+
+    /**
+     * dp 转像素
+     *
+     * @param context
+     * @param dpValue
+     * @return
+     */
+    public static int dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 }

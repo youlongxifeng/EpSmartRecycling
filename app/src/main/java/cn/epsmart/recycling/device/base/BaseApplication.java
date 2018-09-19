@@ -3,6 +3,8 @@ package cn.epsmart.recycling.device.base;
 import android.app.Application;
 import android.os.Handler;
 
+import com.company.project.android.utils.LogUtils;
+
 /**
  * @Author: Administrator
  * @Time: 2018 2018/9/18 17:58
@@ -21,6 +23,7 @@ public class BaseApplication extends Application {
         mContext = this;
         mHandler = new Handler();
         mMainThreadId = android.os.Process.myTid();
+        LogUtils.init(null,true,true);
     }
     public static BaseApplication getContext() {
         return mContext;

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <cn.epsmart.recycling.device.utils.ProgressWebView
+        android:id="@+id/sigin_progresswebview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></cn.epsmart.recycling.device.utils.ProgressWebView>
+
+</android.support.constraint.ConstraintLayout>

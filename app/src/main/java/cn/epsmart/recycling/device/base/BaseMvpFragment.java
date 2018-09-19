@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.mvp.BasePresenter;
 import cn.epsmart.recycling.device.mvp.BaseView;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -20,6 +22,9 @@ import me.yokeyword.fragmentation.SupportFragment;
  * @description: （添加一句描述）
  */
 public abstract class BaseMvpFragment<P extends BasePresenter> extends SupportFragment implements BaseView {
+    // 再点一次退出程序时间设置
+    private static final long WAIT_TIME = 2000L;
+    private long TOUCH_TIME = 0;
     protected P mPresenter;
     Unbinder mUnbinder;
     @Override
@@ -73,4 +78,20 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends SupportFr
     public void startBrotherFragment(SupportFragment targetFragment) {
         start(targetFragment);
     }
+
+    /**
+     * 处理回退事件
+     *
+     * @return
+     */
+ /*   @Override
+    public boolean onBackPressedSupport() {
+        if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
+            _mActivity.finish();
+        } else {
+            TOUCH_TIME = System.currentTimeMillis();
+            Toast.makeText(_mActivity, R.string.press_again_exit, Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }*/
 }

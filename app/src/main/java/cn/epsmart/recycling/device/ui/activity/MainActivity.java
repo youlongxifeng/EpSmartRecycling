@@ -15,17 +15,7 @@ import cn.epsmart.recycling.device.ui.fragment.home.HomeFragment;
  */
 public class MainActivity  extends BaseMvpActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        /*HomeFragment fragment = new HomeFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(R.id.content_fragment, fragment,null);
-        transaction.commit();*/
-    }
 
     @Override
     public BasePresenter setPresenter() {
@@ -34,7 +24,7 @@ public class MainActivity  extends BaseMvpActivity {
 
     @Override
     public int getlayoutId() {
-        return 0;
+        return R.layout.activity_main;
     }
 
     @Override

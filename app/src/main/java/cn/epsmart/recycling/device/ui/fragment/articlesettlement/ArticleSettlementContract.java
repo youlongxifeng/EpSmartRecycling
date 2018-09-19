@@ -15,12 +15,16 @@ public interface ArticleSettlementContract {
     }
 
     interface Model extends BaseModel {
+        void getTypeParameter();
 
 
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
-
+        /**
+         * 获取配置参数
+         */
+        abstract void getTypeParameter();
 
     }
 }

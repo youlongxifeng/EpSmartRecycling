@@ -51,6 +51,11 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.zhy:base-rvadapter:3.0.3'//万能适配器
 
+    implementation ("com.github.bumptech.glide:glide:4.8.0") {
+        exclude group: "com.android.support"
+    }
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
     implementation project(':extraModules:basemain')
     implementation project(':extraModules:fragmentation')
     implementation project(':extraModules:fragmentation_swipeback')

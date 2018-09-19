@@ -2,12 +2,15 @@ package cn.epsmart.recycling.device.ui.fragment.home;
 
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Map;
 
+import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
 import cn.epsmart.recycling.device.mvp.BaseModel;
 import cn.epsmart.recycling.device.mvp.BasePresenter;
 import cn.epsmart.recycling.device.mvp.BaseView;
 import io.reactivex.Observable;
+import io.reactivex.observers.DisposableObserver;
 import okhttp3.RequestBody;
 
 /**
@@ -17,33 +20,21 @@ import okhttp3.RequestBody;
 public interface HomeContract {
     interface View extends BaseView {
 
-        void setLogin(String active);
+        void setDeliveryDataSucceed(List<RecoveryTypeBean> active);
 
-        void showDialog();
-
-        void onSucceed(String data);
-
-        void onFail(String err);
-
-        void hideDialog();
     }
 
     interface Model extends BaseModel {
 
-        String loginSuccess();//Success, failure
-        Observable<String> getGank();
 
-        Observable<JSONObject> accessToken(RequestBody requestBody);
+        Observable<List<RecoveryTypeBean>> getDeliveryData();
 
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
 
-        public abstract String login(Map<String, String> maps);
+        public abstract void getDeliveryData(Map<String, String> maps);
 
-        public abstract void getGank();
-
-        public abstract void  accessToken(String app_id,String secret_key);
 
     }
 }

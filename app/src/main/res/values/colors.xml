@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="color_b2000000">#b2000000</color>
     <color name="color_22ffffff">#22ffffff</color>
+    <color name="color_3f3f3f">#3f3f3f</color>
+    <!--主题白色-->
+    <color name="color_theme_ffffff">#FFFFFF</color>
+    <color name="theme_color_primary">#f44336</color>
+    <color name="theme_color_primary_dark">#f44336</color>
 </resources>

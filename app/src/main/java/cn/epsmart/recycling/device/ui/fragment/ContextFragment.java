@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.company.project.android.utils.LogUtils;
+
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpFragment;
 import cn.epsmart.recycling.device.mvp.BasePresenter;
@@ -16,7 +18,7 @@ import me.yokeyword.fragmentation.SupportFragment;
  * @description: （添加一句描述）
  */
 public class ContextFragment extends BaseMvpFragment {
-
+    private final static String TAG = ContextFragment.class.getSimpleName();
     public static ContextFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -44,6 +46,11 @@ public class ContextFragment extends BaseMvpFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         loadMultipleRootFragment(R.id.fl_container, 0, HomeFragment.newInstance());
+    }
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+        super.onFragmentResult(requestCode, resultCode, data);
+        LogUtils.i(TAG,"requestCode=="+requestCode+"  resultCode="+resultCode);
     }
 
     @Override

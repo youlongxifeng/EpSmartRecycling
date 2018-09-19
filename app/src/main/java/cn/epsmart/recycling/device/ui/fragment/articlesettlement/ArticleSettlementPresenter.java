@@ -6,4 +6,12 @@ package cn.epsmart.recycling.device.ui.fragment.articlesettlement;
  * @description: （添加一句描述）
  */
 public class ArticleSettlementPresenter extends ArticleSettlementContract.Presenter {
+    public  ArticleSettlementPresenter(){
+        mModel=new ArticleSettlementModel();
+    }
+
+    @Override
+    void getTypeParameter() {
+
+    }
 }

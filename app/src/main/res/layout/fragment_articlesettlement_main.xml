@@ -16,33 +16,63 @@
         <RelativeLayout
             android:id="@+id/rl_product_income"
             android:layout_width="match_parent"
-            android:layout_height="180dp">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x_20">
+
+            <TextView
+                android:id="@+id/tx_product_type_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:gravity="center|left"
+                android:text="@string/recovery_type_name" />
 
             <TextView
                 android:id="@+id/tx_product_type"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_gravity="center"
+                android:layout_toRightOf="@id/tx_product_type_tag"
                 android:gravity="center|left"
-                android:text="当前类型:纸类" />
+                android:text="纸类" />
 
             <TextView
-                android:layout_below="@id/tx_product_type"
-                android:id="@+id/tx_product_weight"
-                android:layout_width="match_parent"
+                android:id="@+id/tx_product_weight_tag"
+                android:layout_width="wrap_content"
                 android:layout_height="64dp"
+                android:layout_below="@id/tx_product_type"
                 android:layout_gravity="center"
                 android:gravity="center|left"
-                android:text="当前重量：500g" />
+                android:text="@string/recovery_weight_name" />
 
             <TextView
-                android:id="@+id/tx_product_price"
-                android:layout_width="match_parent"
+                android:layout_toRightOf="@id/tx_product_weight_tag"
+                android:id="@+id/tx_product_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_below="@id/tx_product_type"
+                android:layout_gravity="center"
+                android:gravity="center|left"
+                android:text="500g" />
+
+            <TextView
+                android:id="@+id/tx_product_price_tag"
+                android:layout_width="wrap_content"
                 android:layout_height="64dp"
                 android:layout_below="@id/tx_product_weight"
                 android:layout_gravity="center"
                 android:gravity="center|left"
-                android:text="本次收益：1.5元" />
+                android:text="@string/recovery_income_name" />
+
+            <TextView
+                android:layout_toRightOf="@id/tx_product_price_tag"
+                android:id="@+id/tx_product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_below="@id/tx_product_weight"
+                android:layout_gravity="center"
+                android:gravity="center|left"
+                android:text="1.5元" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -50,12 +80,17 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_below="@+id/rl_product_income">
+
             <Button
+                android:id="@+id/bt_settlement"
+                android:layout_width="@dimen/x_260"
+                android:layout_height="@dimen/x_120"
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
-                android:layout_width="104dp"
-                android:layout_height="64dp"
-                android:text="结算"/>
+                android:background="@drawable/bg_theme_circle"
+                android:text="@string/settlement_name"
+                android:textColor="@color/color_theme_ffffff"
+                android:textSize="@dimen/x_30" />
         </RelativeLayout>
     </RelativeLayout>
 
