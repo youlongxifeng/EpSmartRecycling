@@ -1,0 +1,29 @@
+<resources>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="tool_bar_height">50dp</dimen>
+    <dimen name="fab_margin">10dp</dimen>
+    <dimen name="text_margin">10dp</dimen>
+
+    <dimen name="bottombar_height">48dp</dimen>
+    <dimen name="bottombar_wechat_height">52dp</dimen>
+    <dimen name="x_4">4px</dimen>
+    <dimen name="x_10">10px</dimen>
+    <dimen name="x_12">12px</dimen>
+    <dimen name="x_16">16px</dimen>
+    <dimen name="x_20">20px</dimen>
+    <dimen name="x_24">24px</dimen>
+    <dimen name="x_30">30px</dimen>
+    <dimen name="x_32">32px</dimen>
+    <dimen name="x_40">40px</dimen>
+    <dimen name="x_50">50px</dimen>
+    <dimen name="x_62">62px</dimen>
+    <dimen name="x_88">88px</dimen>
+    <dimen name="x_120">120px</dimen>
+    <dimen name="x_130">130px</dimen>
+    <dimen name="x_180">180px</dimen>
+    <dimen name="x_200">200px</dimen>
+    <dimen name="x_220">220px</dimen>
+    <dimen name="x_260">260px</dimen>
+    <dimen name="x_280">280px</dimen>
+    <dimen name="x_8">8px</dimen>
+</resources>

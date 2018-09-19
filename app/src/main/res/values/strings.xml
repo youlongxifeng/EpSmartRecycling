@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EpSmartRecyclingDevice</string>
+    <string name="loading_data">数据加载中&#8230;</string>
 </resources>

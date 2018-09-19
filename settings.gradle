@@ -1,2 +1,6 @@
 include ':app',
-        ':extraModules:basemain'
+        ':extraModules:basemain',
+        ':extraModules:fragmentation_core',
+        ':extraModules:fragmentation_swipeback',
+        ':extraModules:fragmentation',
+        ':extraModules:eventbus_activity_scope'

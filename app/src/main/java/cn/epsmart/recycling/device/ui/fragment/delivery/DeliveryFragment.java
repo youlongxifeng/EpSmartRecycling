@@ -1,5 +1,6 @@
 package cn.epsmart.recycling.device.ui.fragment.delivery;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -15,6 +16,16 @@ import cn.epsmart.recycling.device.base.BaseMvpFragment;
 public class DeliveryFragment extends BaseMvpFragment<DeliveryPresenter> {
     @BindView(R.id.recyclerview_delivery)
     RecyclerView mRecyclerView;
+
+
+
+    public static DeliveryFragment newInstance( ) {
+
+        Bundle args = new Bundle();
+        DeliveryFragment fragment = new DeliveryFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     protected DeliveryPresenter createPresenter() {
         return new DeliveryPresenter();

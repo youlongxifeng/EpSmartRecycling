@@ -12,13 +12,14 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.epsmart.recycling.device.mvp.BasePresenter;
 import cn.epsmart.recycling.device.mvp.BaseView;
+import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * @Author: Administrator
  * @Time: 2018 2018/9/18 18:05
  * @description: （添加一句描述）
  */
-public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseMvpFragment<P extends BasePresenter> extends SupportFragment implements BaseView {
     protected P mPresenter;
     Unbinder mUnbinder;
     @Override
@@ -68,4 +69,8 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends Fragment 
     protected abstract void initView(View view);
 
     protected abstract void initDate();
+
+    public void startBrotherFragment(SupportFragment targetFragment) {
+        start(targetFragment);
+    }
 }

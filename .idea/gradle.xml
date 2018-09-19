@@ -11,6 +11,10 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/extraModules" />
             <option value="$PROJECT_DIR$/extraModules/basemain" />
+            <option value="$PROJECT_DIR$/extraModules/eventbus_activity_scope" />
+            <option value="$PROJECT_DIR$/extraModules/fragmentation" />
+            <option value="$PROJECT_DIR$/extraModules/fragmentation_core" />
+            <option value="$PROJECT_DIR$/extraModules/fragmentation_swipeback" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

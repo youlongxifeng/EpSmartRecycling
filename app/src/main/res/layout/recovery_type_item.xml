@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_recovery_type"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/x_280"
+    android:layout_gravity="center" >
+
+
+    <ImageView
+        android:id="@+id/iv_recovery_type_icon"
+        android:layout_width="@dimen/x_180"
+        android:layout_height="@dimen/x_180"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:padding="@dimen/x_4"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_recovery_type_title"
+        android:layout_width="@dimen/x_120"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_recovery_type_icon"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingTop="@dimen/x_4"
+        android:singleLine="true"
+        android:text="纸类"
+        android:textColor="@color/color_b2000000"
+        android:textSize="@dimen/x_30" />
+
+    <TextView
+        android:id="@+id/tv_recovery_type_price"
+        android:layout_width="@dimen/x_120"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_recovery_type_title"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingTop="@dimen/x_8"
+        android:singleLine="true"
+        android:text="10元/斤"
+        android:textColor="@color/color_b2000000"
+        android:textSize="@dimen/x_30" />
+
+</RelativeLayout>
