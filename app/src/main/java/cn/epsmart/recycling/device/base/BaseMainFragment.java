@@ -3,7 +3,6 @@ package cn.epsmart.recycling.device.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +17,16 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * @Author: Administrator
- * @Time: 2018 2018/9/18 18:05
+ * @Time: 2018 2018/9/19 19:06
  * @description: （添加一句描述）
  */
-public abstract class BaseMvpFragment<P extends BasePresenter> extends SupportFragment implements BaseView {
+public abstract class BaseMainFragment<P extends BasePresenter> extends SupportFragment implements BaseView {
     // 再点一次退出程序时间设置
     private static final long WAIT_TIME = 2000L;
     private long TOUCH_TIME = 0;
     protected P mPresenter;
     Unbinder mUnbinder;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -45,7 +45,6 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends SupportFr
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater,   container,   savedInstanceState);
         View view = inflater.inflate(getlayoutId(), container, false);
         mUnbinder = ButterKnife.bind(this, view);
         return view;
@@ -85,7 +84,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends SupportFr
      *
      * @return
      */
- /*   @Override
+    @Override
     public boolean onBackPressedSupport() {
         if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
             _mActivity.finish();
@@ -94,5 +93,6 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends SupportFr
             Toast.makeText(_mActivity, R.string.press_again_exit, Toast.LENGTH_SHORT).show();
         }
         return true;
-    }*/
+    }
 }
+

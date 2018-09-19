@@ -45,7 +45,7 @@ public class ContextFragment extends BaseMvpFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loadMultipleRootFragment(R.id.fl_container, 0, HomeFragment.newInstance());
+        loadRootFragment(R.id.fl_container,HomeFragment.newInstance());
     }
     @Override
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
