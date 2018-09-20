@@ -31,7 +31,7 @@ public class RecoveryTypeAdapter extends BaseRecyclerViewAdapter<RecoveryTypeBea
         TextView mRecoveryTypeTitle = holder.getView(R.id.tv_recovery_type_title);
         TextView mRecoveryTypePrice = holder.getView(R.id.tv_recovery_type_price);
         mRecoveryTypeTitle.setText(recoveryTypeBean.getmRecoveryType());
-        mRecoveryTypePrice.setText(recoveryTypeBean.getmRecoveryPrice());
+        mRecoveryTypePrice.setText(String.valueOf(recoveryTypeBean.getmRecoveryPrice()));
         //Glide.with(HomeFragment.this).load("http://goo.gl/gEgYUd").into(mRecoveryTypeIcon);
     }
 }

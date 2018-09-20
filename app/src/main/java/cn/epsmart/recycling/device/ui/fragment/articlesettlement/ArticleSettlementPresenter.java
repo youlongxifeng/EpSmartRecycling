@@ -28,7 +28,7 @@ public class ArticleSettlementPresenter extends ArticleSettlementContract.Presen
     void getCurrentArticleWeight(RecoveryTypeBean recoveryTypeBean) {
         if (mView != null) {
             SettlementBean settlementBean=new SettlementBean();
-            settlementBean.setPrice(recoveryTypeBean.getmRecoveryPrice());
+            settlementBean.setPrice(String.valueOf(recoveryTypeBean.getmRecoveryPrice()));
             settlementBean.setWeight("26");
             mView.ArticleWeightSuccess(settlementBean);
         } else {

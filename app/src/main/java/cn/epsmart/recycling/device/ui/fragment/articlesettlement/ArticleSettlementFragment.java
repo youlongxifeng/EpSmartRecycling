@@ -7,12 +7,15 @@ import android.widget.TextView;
 
 import com.company.project.android.utils.LogUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpFragment;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
 import cn.epsmart.recycling.device.entity.SettlementBean;
+import cn.epsmart.recycling.device.observer.MessageEvent;
 import cn.epsmart.recycling.device.ui.fragment.home.HomeFragment;
 
 /**
@@ -90,6 +93,9 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
                 }
                 break;
             case R.id.bt_delivery_other:
+                MessageEvent<RecoveryTypeBean> messageEvent= new MessageEvent();
+                messageEvent.setT(mRecoveryTypeBean);
+                EventBus.getDefault().post(mRecoveryTypeBean);
                 pop();
                 break;
             default:

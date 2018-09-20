@@ -1,15 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_3f3f3f"
+    >
+
+    <Button
+        android:id="@+id/bt_exit_logon"
+        android:layout_width="@dimen/x_320"
+        android:layout_height="@dimen/x_120"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x_20"
+        android:layout_marginTop="@dimen/x_20"
+        android:background="@drawable/bg_theme_circle"
+        android:text="@string/exit_logon"
+        android:textColor="@color/color_theme_ffffff"
+        android:textSize="@dimen/x_30" />
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="@dimen/x_40"
         android:id="@+id/rcv_recovery_type_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/x_640"
+        android:layout_below="@id/bt_exit_logon"
+        android:layout_marginTop="@dimen/x_40"
         android:orientation="vertical"
-        android:overScrollMode="never">
-    </android.support.v7.widget.RecyclerView>
+        android:overScrollMode="never"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/rl_total_income"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/rcv_recovery_type_list"
+        android:layout_marginTop="@dimen/x_30">
+
+        <LinearLayout
+            android:id="@+id/ll_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/theme_color_primary"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tx_total_price_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x_30"
+                android:gravity="center"
+                android:paddingBottom="@dimen/x_10"
+                android:paddingTop="@dimen/x_10"
+                android:text="@string/total_income_name"
+                android:textColor="@color/color_theme_ffffff"
+                android:textSize="@dimen/x_40" />
+
+            <TextView
+                android:id="@+id/tx_total_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tx_total_price_tag"
+                android:gravity="left|center"
+                android:paddingBottom="@dimen/x_10"
+                android:paddingTop="@dimen/x_10"
+                android:text="25元"
+                android:textColor="@color/color_theme_ffffff"
+                android:textSize="@dimen/x_64" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_obvious_income_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ll_total_price"
+            android:layout_marginTop="@dimen/x_40"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

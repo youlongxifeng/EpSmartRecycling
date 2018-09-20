@@ -15,10 +15,19 @@ import io.reactivex.observers.DisposableObserver;
  */
 
 public class HomePresenter extends HomeContract.Presenter {
-    private final static String TAG=HomePresenter.class.getSimpleName();
-    private String[]mTypeName={"纸类","塑料","金属","纺织品","玻璃","有害"};
+    private final static String TAG = HomePresenter.class.getSimpleName();
+    private String[] mTypeName = {"纸类", "塑料", "金属", "纺织品", "玻璃", "有害"};
+
     public HomePresenter() {
         mModel = new HomeModel();
+    }
+
+    @Override
+    void exitLogon() {
+        //以后需要执行退出登录操作，数据清理操作
+        if (mView != null) {
+        mView.exitLogon();
+        }
     }
 
     @Override
@@ -27,12 +36,12 @@ public class HomePresenter extends HomeContract.Presenter {
         for (int i = 0; i < mTypeName.length; i++) {
             RecoveryTypeBean recoveryTypeBean = new RecoveryTypeBean();
             recoveryTypeBean.setId(i);
-            recoveryTypeBean.setmRecoveryPrice(String.valueOf((i+1)));
+            recoveryTypeBean.setmRecoveryPrice(i + 1);
             recoveryTypeBean.setmRecoveryType(mTypeName[i]);
             mRecoveryTypeBeanList.add(recoveryTypeBean);
         }
 
-        LogUtils.i(TAG,"(mView != null)="+(mView != null)+"   mRecoveryTypeBeanList="+mRecoveryTypeBeanList);
+        LogUtils.i(TAG, "(mView != null)=" + (mView != null) + "   mRecoveryTypeBeanList=" + mRecoveryTypeBeanList);
         if (mView != null) {
             mView.setDeliveryDataSucceed(mRecoveryTypeBeanList);
         }
@@ -41,6 +50,11 @@ public class HomePresenter extends HomeContract.Presenter {
                 .compose(RxSchedulers.<List<RecoveryTypeBean>>switchObservableThread())
                 .subscribe(disposableObserver);
         addSubscribe(disposableObserver);*/
+
+    }
+
+    @Override
+    public void getObviousIncomeData(Map<String, String> maps) {
 
     }
 

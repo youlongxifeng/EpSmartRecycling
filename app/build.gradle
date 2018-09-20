@@ -10,6 +10,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {//Java编译配置参数
+            annotationProcessorOptions {
+                arguments = [eventBusIndex: 'cn.epsmart.recycling.device.MyEventBusIndex']
+            }
+        }
     }
     buildTypes {
         release {
@@ -63,4 +69,7 @@ dependencies {
     implementation project(':extraModules:eventbus_activity_scope')
     implementation 'org.greenrobot:eventbus:latest.release'//latest.release当前最新版本
     annotationProcessor "org.greenrobot:eventbus-annotation-processor:latest.release"
+
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
 }
