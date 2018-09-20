@@ -6,5 +6,8 @@
     <string name="recovery_weight_name">当前重量：</string>
     <string name="recovery_income_name">本次收益：</string>
     <string name="settlement_name">结算</string>
+    <string name="delivery_other_name">投递其他回收物</string>
     <string name="press_again_exit">按下返回</string>
+    <string name="catty_name">kg</string>
+    <string name="element_name">元</string>
 </resources>

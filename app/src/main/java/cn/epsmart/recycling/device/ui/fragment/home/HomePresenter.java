@@ -27,7 +27,7 @@ public class HomePresenter extends HomeContract.Presenter {
         for (int i = 0; i < mTypeName.length; i++) {
             RecoveryTypeBean recoveryTypeBean = new RecoveryTypeBean();
             recoveryTypeBean.setId(i);
-            recoveryTypeBean.setmRecoveryPrice("10元/斤");
+            recoveryTypeBean.setmRecoveryPrice(String.valueOf((i+1)));
             recoveryTypeBean.setmRecoveryType(mTypeName[i]);
             mRecoveryTypeBeanList.add(recoveryTypeBean);
         }

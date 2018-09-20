@@ -46,12 +46,12 @@
                 android:text="@string/recovery_weight_name" />
 
             <TextView
-                android:layout_toRightOf="@id/tx_product_weight_tag"
                 android:id="@+id/tx_product_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="64dp"
                 android:layout_below="@id/tx_product_type"
                 android:layout_gravity="center"
+                android:layout_toRightOf="@id/tx_product_weight_tag"
                 android:gravity="center|left"
                 android:text="500g" />
 
@@ -65,12 +65,12 @@
                 android:text="@string/recovery_income_name" />
 
             <TextView
-                android:layout_toRightOf="@id/tx_product_price_tag"
                 android:id="@+id/tx_product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="64dp"
                 android:layout_below="@id/tx_product_weight"
                 android:layout_gravity="center"
+                android:layout_toRightOf="@id/tx_product_price_tag"
                 android:gravity="center|left"
                 android:text="1.5元" />
         </RelativeLayout>
@@ -83,14 +83,28 @@
 
             <Button
                 android:id="@+id/bt_settlement"
-                android:layout_width="@dimen/x_260"
+                android:layout_width="@dimen/x_320"
                 android:layout_height="@dimen/x_120"
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
                 android:background="@drawable/bg_theme_circle"
                 android:text="@string/settlement_name"
                 android:textColor="@color/color_theme_ffffff"
-                android:textSize="@dimen/x_30" />
+                android:textSize="@dimen/x_30"
+
+                />
+
+            <Button
+                android:id="@+id/bt_delivery_other"
+                android:layout_width="@dimen/x_320"
+                android:layout_height="@dimen/x_120"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_theme_circle"
+                android:text="@string/delivery_other_name"
+                android:textColor="@color/color_theme_ffffff"
+                android:textSize="@dimen/x_30"
+                android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 

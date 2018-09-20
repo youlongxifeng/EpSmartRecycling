@@ -89,7 +89,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         mRecoveryTypeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                ((ContextFragment) getParentFragment()).startForResult(ArticleSettlementFragment.newInstance(), REQ_MODIFY_FRAGMENT);
+                RecoveryTypeBean recoveryTypeBean=   mRecoveryTypeAdapter.getDatas().get(position);
+                ((ContextFragment) getParentFragment()).startForResult(ArticleSettlementFragment.newInstance(recoveryTypeBean), REQ_MODIFY_FRAGMENT);
             }
 
             @Override
