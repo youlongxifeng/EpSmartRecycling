@@ -33,5 +33,6 @@
     <dimen name="x_360">360px</dimen>
     <dimen name="x_480">480px</dimen>
     <dimen name="x_640">640px</dimen>
+    <dimen name="x_680">680px</dimen>
     <dimen name="x_8">8px</dimen>
 </resources>
