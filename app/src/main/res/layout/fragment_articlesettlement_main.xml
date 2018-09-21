@@ -22,7 +22,8 @@
             <TextView
                 android:id="@+id/tx_product_type_tag"
                 android:layout_width="wrap_content"
-                android:layout_height="64dp"
+                android:layout_height="@dimen/x_120"
+                android:textSize="@dimen/x_30"
                 android:layout_gravity="center"
                 android:gravity="center|left"
                 android:text="@string/recovery_type_name" />
@@ -30,7 +31,8 @@
             <TextView
                 android:id="@+id/tx_product_type"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="@dimen/x_120"
+                android:textSize="@dimen/x_30"
                 android:layout_gravity="center"
                 android:layout_toRightOf="@id/tx_product_type_tag"
                 android:gravity="center|left"
@@ -39,7 +41,8 @@
             <TextView
                 android:id="@+id/tx_product_weight_tag"
                 android:layout_width="wrap_content"
-                android:layout_height="64dp"
+                android:layout_height="@dimen/x_120"
+                android:textSize="@dimen/x_30"
                 android:layout_below="@id/tx_product_type"
                 android:layout_gravity="center"
                 android:gravity="center|left"
@@ -48,7 +51,8 @@
             <TextView
                 android:id="@+id/tx_product_weight"
                 android:layout_width="wrap_content"
-                android:layout_height="64dp"
+                android:layout_height="@dimen/x_120"
+                android:textSize="@dimen/x_30"
                 android:layout_below="@id/tx_product_type"
                 android:layout_gravity="center"
                 android:layout_toRightOf="@id/tx_product_weight_tag"
@@ -58,7 +62,8 @@
             <TextView
                 android:id="@+id/tx_product_price_tag"
                 android:layout_width="wrap_content"
-                android:layout_height="64dp"
+                android:layout_height="@dimen/x_120"
+                android:textSize="@dimen/x_30"
                 android:layout_below="@id/tx_product_weight"
                 android:layout_gravity="center"
                 android:gravity="center|left"
@@ -67,7 +72,8 @@
             <TextView
                 android:id="@+id/tx_product_price"
                 android:layout_width="wrap_content"
-                android:layout_height="64dp"
+                android:layout_height="@dimen/x_120"
+                android:textSize="@dimen/x_30"
                 android:layout_below="@id/tx_product_weight"
                 android:layout_gravity="center"
                 android:layout_toRightOf="@id/tx_product_price_tag"
@@ -78,7 +84,8 @@
         <RelativeLayout
             android:id="@+id/rl_product_settlement"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="@dimen/x_200"
+            android:layout_marginTop="@dimen/x_64"
             android:layout_below="@+id/rl_product_income">
 
             <Button

@@ -23,6 +23,7 @@
         android:layout_height="@dimen/x_680"
         android:layout_below="@id/bt_exit_logon"
         android:layout_marginTop="@dimen/x_40"
+        android:layout_marginLeft="@dimen/x_40"
         android:orientation="vertical"
         android:overScrollMode="never"
         />

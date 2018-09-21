@@ -7,7 +7,11 @@ import java.io.Serializable;
  * @Time: 2018 2018/9/19 15:27
  * @description: （添加一句描述）
  */
-public class UserBean implements Serializable {
+public class UserBean extends BaseBean {
+    /**
+     * 用户ID
+     */
+    private String userid;
     /**
      * 用户账号（当前只支持手机号码)
      */
@@ -17,6 +21,13 @@ public class UserBean implements Serializable {
      */
     private String password;
 
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
 
     public String getPassword() {
         return password;
@@ -37,7 +48,8 @@ public class UserBean implements Serializable {
     @Override
     public String toString() {
         return "UserBean{" +
-                "username='" + username + '\'' +
+                "userid='" + userid + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

@@ -6,13 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.http.SslError;
 import android.os.Build;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.view.KeyEvent;
-import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -23,8 +19,9 @@ import com.company.project.android.utils.LogUtils;
 import butterknife.BindView;
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpActivity;
+import cn.epsmart.recycling.device.entity.UserBean;
 import cn.epsmart.recycling.device.mvp.BasePresenter;
-import cn.epsmart.recycling.device.ui.activity.MainActivity;
+import cn.epsmart.recycling.device.ui.activity.main.MainActivity;
 import cn.epsmart.recycling.device.utils.ProgressWebView;
 
 /**
@@ -32,7 +29,7 @@ import cn.epsmart.recycling.device.utils.ProgressWebView;
  * @Time: 2018 2018/9/19 15:31
  * @description: （首页登录界面）
  */
-public class SignInActivity extends BaseMvpActivity implements ProgressWebView.WebCallBack {
+public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements ProgressWebView.WebCallBack ,SignInContract.View{
     private final static String TAG = SignInActivity.class.getSimpleName();
     @BindView(R.id.sigin_progresswebview)
     ProgressWebView mProgresswebview;
@@ -43,8 +40,8 @@ public class SignInActivity extends BaseMvpActivity implements ProgressWebView.W
     private String mQRCodeUrl = "https://www.baidu.com/";
 
     @Override
-    public BasePresenter setPresenter() {
-        return null;
+    public SignInPresenter setPresenter() {
+        return new SignInPresenter();
     }
 
     @Override
@@ -189,5 +186,15 @@ public class SignInActivity extends BaseMvpActivity implements ProgressWebView.W
      */
     @JavascriptInterface
     public void signInFail(String fail) {
+    }
+
+    @Override
+    public void signInSuccess(UserBean userBean) {
+        //保存数据到数据库或是什么地方
+    }
+
+    @Override
+    public void signInFail() {
+
     }
 }

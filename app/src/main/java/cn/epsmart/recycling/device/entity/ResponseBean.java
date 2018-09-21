@@ -6,6 +6,8 @@ package cn.epsmart.recycling.device.entity;
  * @description: （数据响应实体类）
  */
 public class ResponseBean<T> {
+    public final static int CODE_SUCCESS0 = 0;     // 服务端返回码，成功（兼容以前 api）
+    public final static int CODE_SUCCESS = 200;     // 服务端返回码，成功
     private int code; // code==200为成功 code >=4000 <=4999请求类型错误 code >=5000 <=5999 服务器类型错误
     private String msg;
     private long server_time; // 单位 s

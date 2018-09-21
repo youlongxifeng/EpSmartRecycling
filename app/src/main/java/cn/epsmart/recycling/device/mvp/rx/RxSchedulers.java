@@ -2,12 +2,14 @@ package cn.epsmart.recycling.device.mvp.rx;
 
 import org.reactivestreams.Publisher;
 
+import cn.epsmart.recycling.device.entity.ResponseBean;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -44,4 +46,22 @@ public class RxSchedulers {
             }
         };
     }
+
+
+    public static <T> ObservableTransformer<ResponseBean<T>, T> combine() {
+        return new ObservableTransformer<ResponseBean<T>, T>() {
+            @Override
+            public ObservableSource<T> apply(Observable<ResponseBean<T>> upstream) {
+                return  upstream
+                        .subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .map(new MapFunction())
+                        .onErrorResumeNext(new ErrorObservableSource());
+            }
+        };
+    }
+
+
+
 }
