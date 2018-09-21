@@ -83,6 +83,7 @@ public class SerialPortManager {
         try {
             File device = new File(devicePath);
             int baurate = Integer.parseInt(baudrateString);
+            LogUtils.i(TAG, "打开串口成功  device="+device+"  baurate="+baurate);
             mSerialPort = new SerialPort(device, baurate);
 
             mReadThread = new SerialReadThread(mSerialPort.getInputStream());
@@ -92,10 +93,10 @@ public class SerialPortManager {
             mWriteThread = new HandlerThread("write-thread");
             mWriteThread.start();
             mSendScheduler = AndroidSchedulers.from(mWriteThread.getLooper());
-
+            LogUtils.i(TAG, "打开串口成功");
             return mSerialPort;
         } catch (Throwable tr) {
-            LogUtils.e(TAG, "打开串口失败");
+            LogUtils.i(TAG, "打开串口失败");
             close();
             return null;
         }

@@ -7,16 +7,19 @@ import android.graphics.Color;
 import android.net.http.SslError;
 import android.os.Build;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.company.project.android.utils.LogUtils;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpActivity;
 import cn.epsmart.recycling.device.entity.UserBean;
@@ -29,11 +32,10 @@ import cn.epsmart.recycling.device.utils.ProgressWebView;
  * @Time: 2018 2018/9/19 15:31
  * @description: （首页登录界面）
  */
-public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements ProgressWebView.WebCallBack ,SignInContract.View{
+public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements ProgressWebView.WebCallBack, SignInContract.View {
     private final static String TAG = SignInActivity.class.getSimpleName();
     @BindView(R.id.sigin_progresswebview)
     ProgressWebView mProgresswebview;
-    ;
     /**
      * 二维码地址
      */
@@ -49,12 +51,13 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
         return R.layout.activity_sigin_main;
     }
 
-    @SuppressLint("JavascriptInterface")
+
     @Override
     public void initView() {
         initWebView();
     }
 
+    @SuppressLint("JavascriptInterface")
     private void initWebView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             mProgresswebview.setWebContentsDebuggingEnabled(true);
@@ -62,7 +65,6 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
         WebSettings ws = mProgresswebview.getSettings();
         //设置WebView属性，能够执行Javascript脚本
         ws.setJavaScriptEnabled(true);
-
         mProgresswebview.setBackgroundColor(Color.parseColor("#00000000"));
         mProgresswebview.setWebCallBack(this);
         ws.setCacheMode(WebSettings.LOAD_NO_CACHE);
@@ -85,7 +87,7 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
                     @Override
                     public void run() {
                         try {
-                            Thread.sleep(2500);
+                            Thread.sleep(5000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -144,12 +146,17 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
+        webviewDestroy();
+    }
+
+    /**
+     * 销毁webview
+     */
+    private void webviewDestroy() {
         if (mProgresswebview != null) {
             mProgresswebview.removeAllViews();
             mProgresswebview.destroy();
-        }
-        super.onDestroy();
-        if (mProgresswebview != null) {
             mProgresswebview.stopLoading();
             mProgresswebview.removeJavascriptInterface("android");
             // 移除绑定服务，否则某些特定系统会报错
@@ -174,8 +181,8 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
     @JavascriptInterface
     public void signInSuccess(String success) {
         Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-        startActivity(intent);
-        Toast.makeText(this,"登录成功",Toast.LENGTH_LONG).show();
+        startActivityForResult(intent, 1000);
+        Toast.makeText(this, "登录成功", Toast.LENGTH_LONG).show();
 
     }
 
@@ -196,5 +203,13 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
     @Override
     public void signInFail() {
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mProgresswebview.loadUrl(mQRCodeUrl);
+        LogUtils.i(TAG, "requestCode==" + requestCode + "   resultCode=" + resultCode);
     }
 }

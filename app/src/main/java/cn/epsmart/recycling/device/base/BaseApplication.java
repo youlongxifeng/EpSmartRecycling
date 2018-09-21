@@ -83,7 +83,7 @@ public class BaseApplication extends Application {
 
     public boolean wasBackground = false;    //声明一个布尔变量,记录当前的活动背景
 
-    @Override
+    /*@Override
     public void onPause() {
         super.onPause();
         if (isApplicationBroughtToBackground())
@@ -96,7 +96,6 @@ public class BaseApplication extends Application {
             Log.e("aa", "从后台回到前台");
         }
         wasBackground = false;
-    }
+    }*/
 }
 
-}
