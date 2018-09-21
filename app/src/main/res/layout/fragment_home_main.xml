@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E5E5E5"
+
     >
 
     <Button
@@ -10,6 +12,7 @@
         android:layout_width="@dimen/x_320"
         android:layout_height="@dimen/x_120"
         android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/x_20"
         android:layout_marginRight="@dimen/x_20"
         android:layout_marginTop="@dimen/x_20"
         android:background="@drawable/bg_theme_circle"
@@ -23,10 +26,8 @@
         android:layout_height="@dimen/x_680"
         android:layout_below="@id/bt_exit_logon"
         android:layout_marginTop="@dimen/x_40"
-        android:layout_marginLeft="@dimen/x_40"
         android:orientation="vertical"
-        android:overScrollMode="never"
-        />
+        android:overScrollMode="never" />
 
     <RelativeLayout
         android:id="@+id/rl_total_income"
@@ -34,6 +35,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_below="@id/rcv_recovery_type_list"
+        android:layout_marginLeft="@dimen/x_20"
+        android:layout_marginRight="@dimen/x_20"
         android:layout_marginTop="@dimen/x_30">
 
         <LinearLayout

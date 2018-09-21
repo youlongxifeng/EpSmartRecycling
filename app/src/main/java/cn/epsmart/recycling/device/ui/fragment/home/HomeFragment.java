@@ -136,7 +136,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         LogUtils.i(TAG, "active=" + active);
         mRecoveryTypeBeanList.clear();
         mRecoveryTypeBeanList.addAll(active);
-        mRecoveryTypeAdapter = new RecoveryTypeAdapter(getActivity(), R.layout.recovery_type_item, mRecoveryTypeBeanList);
+        mRecoveryTypeAdapter = new RecoveryTypeAdapter(this,getActivity(), R.layout.recovery_type_item, mRecoveryTypeBeanList);
         mRcvRecoveryTypeList.setAdapter(mRecoveryTypeAdapter);
         mRecoveryTypeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override

@@ -1,6 +1,7 @@
 package cn.epsmart.recycling.device.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Handler;
 
 import cn.epsmart.recycling.device.base.BaseApplication;
@@ -11,6 +12,10 @@ import cn.epsmart.recycling.device.base.BaseApplication;
  * @description: （添加一句描述）
  */
 public class UIUtils {
+
+    public static Resources getResources() {
+        return BaseApplication.getContext().getResources();
+    }
     /**
      * 得到主线程id
      */

@@ -14,6 +14,7 @@ import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseRecyclerViewAdapter;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
 import cn.epsmart.recycling.device.ui.fragment.home.HomeFragment;
+import cn.epsmart.recycling.device.utils.ImageUtil;
 
 /**
  * @Author: Administrator
@@ -21,8 +22,10 @@ import cn.epsmart.recycling.device.ui.fragment.home.HomeFragment;
  * @description: （回收类型适配器）
  */
 public class RecoveryTypeAdapter extends BaseRecyclerViewAdapter<RecoveryTypeBean> {
-    public RecoveryTypeAdapter(Context context, int layoutId, List<RecoveryTypeBean> data) {
+    private  HomeFragment mHomeFragment;
+    public RecoveryTypeAdapter(HomeFragment homeFragment,Context context, int layoutId, List<RecoveryTypeBean> data) {
         super(context, layoutId, data);
+        this.mHomeFragment=homeFragment;
     }
 
     @Override
@@ -32,6 +35,7 @@ public class RecoveryTypeAdapter extends BaseRecyclerViewAdapter<RecoveryTypeBea
         TextView mRecoveryTypePrice = holder.getView(R.id.tv_recovery_type_price);
         mRecoveryTypeTitle.setText(recoveryTypeBean.getmRecoveryType());
         mRecoveryTypePrice.setText(String.valueOf(recoveryTypeBean.getmRecoveryPrice()));
-        //Glide.with(HomeFragment.this).load("http://goo.gl/gEgYUd").into(mRecoveryTypeIcon);
+       // Glide.with(mHomeFragment).load("http://img5.imgtn.bdimg.com/it/u=1317134202,1980401867&fm=27&gp=0.jpg").into(mRecoveryTypeIcon);
+        ImageUtil.setImageViewResId(mRecoveryTypeIcon,"http://img5.imgtn.bdimg.com/it/u=1317134202,1980401867&fm=27&gp=0.jpg",R.mipmap.ic_launcher);
     }
 }

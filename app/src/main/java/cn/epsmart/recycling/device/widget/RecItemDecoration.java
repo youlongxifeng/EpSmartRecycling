@@ -11,6 +11,7 @@ import android.view.View;
 
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.utils.CommonUtil;
+import cn.epsmart.recycling.device.utils.UIUtils;
 
 /**
  * @Author: Administrator
@@ -55,6 +56,9 @@ public class RecItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         outRect.top = CommonUtil.getDimens(mContext, R.dimen.x_20);
+        outRect.right = UIUtils.getResources().getDimensionPixelOffset(R.dimen.x_20);
+        outRect.left = UIUtils.getResources().getDimensionPixelOffset(R.dimen.x_20);
+
     }
 }
 
