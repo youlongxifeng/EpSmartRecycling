@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <cn.epsmart.recycling.device.widget.LoadContentView
+        android:id="@+id/view_load_content"
+        android:layout_marginTop="@dimen/x_88"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/fl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
+    </cn.epsmart.recycling.device.widget.LoadContentView>
+<!--    <include layout="@layout/load_content_view"/>-->
+</FrameLayout>

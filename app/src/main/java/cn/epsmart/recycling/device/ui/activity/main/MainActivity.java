@@ -1,14 +1,7 @@
 package cn.epsmart.recycling.device.ui.activity.main;
 
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
-import com.amap.api.location.AMapLocationQualityReport;
 import com.company.project.android.utils.LogUtils;
 
 import cn.epsmart.recycling.device.R;
@@ -16,10 +9,7 @@ import cn.epsmart.recycling.device.base.BaseMvpActivity;
 import cn.epsmart.recycling.device.manage.MessageQueuingManager;
 import cn.epsmart.recycling.device.manage.serialport.Device;
 import cn.epsmart.recycling.device.manage.serialport.SerialPortManager;
-import cn.epsmart.recycling.device.mvp.BasePresenter;
-import cn.epsmart.recycling.device.ui.fragment.ContextFragment;
 import cn.epsmart.recycling.device.ui.fragment.home.HomeFragment;
-import cn.epsmart.recycling.device.utils.Utils;
 
 /**
  * @Author: Administrator
@@ -42,7 +32,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> {
     @Override
     public void initView() {
         if (findFragment(HomeFragment.class) == null) {
-            loadRootFragment(R.id.fl_container, ContextFragment.newInstance());
+            loadRootFragment(R.id.fl_container, HomeFragment.newInstance());
         }
 
 

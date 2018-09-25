@@ -3,6 +3,7 @@ package cn.epsmart.recycling.device.ui.fragment.delivery;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 
 import butterknife.BindView;
 import cn.epsmart.recycling.device.R;
@@ -34,6 +35,11 @@ public class DeliveryFragment extends BaseMvpFragment<DeliveryPresenter> {
     @Override
     protected int getlayoutId() {
         return R.layout.fragment_delivery_main;
+    }
+
+     @Override
+    protected View getRootView(ViewGroup container) {
+        return mInflater.inflate( R.layout.fragment_delivery_main,container,false);
     }
 
     @Override

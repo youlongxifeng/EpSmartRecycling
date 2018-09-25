@@ -3,6 +3,7 @@ package cn.epsmart.recycling.device.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.company.project.android.utils.LogUtils;
 
@@ -31,6 +32,11 @@ public class ContextFragment extends BaseMvpFragment {
     @Override
     protected BasePresenter createPresenter() {
         return null;
+    }
+
+     @Override
+    protected View getRootView(ViewGroup container) {
+        return mInflater.inflate(R.layout.fragment_context_main,container,false);
     }
 
     @Override

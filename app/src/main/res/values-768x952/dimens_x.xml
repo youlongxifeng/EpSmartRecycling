@@ -1,0 +1,45 @@
+<resources>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="tool_bar_height">50dp</dimen>
+    <dimen name="fab_margin">10dp</dimen>
+    <dimen name="text_margin">10dp</dimen>
+
+    <dimen name="bottombar_height">48dp</dimen>
+    <dimen name="bottombar_wechat_height">52dp</dimen>
+    <dimen name="x_1">1px</dimen>
+    <dimen name="x_4">2px</dimen>
+    <dimen name="x_10">5px</dimen>
+    <dimen name="x_12">6px</dimen>
+    <dimen name="x_16">8px</dimen>
+    <dimen name="x_20">10px</dimen>
+    <dimen name="x_24">12px</dimen>
+    <dimen name="x_30">15px</dimen>
+    <dimen name="x_32">16px</dimen>
+    <dimen name="x_40">20px</dimen>
+    <dimen name="x_48">24px</dimen>
+    <dimen name="x_50">25px</dimen>
+    <dimen name="x_62">31px</dimen>
+    <dimen name="x_64">32px</dimen>
+    <dimen name="x_80">40px</dimen>
+    <dimen name="x_88">44px</dimen>
+    <dimen name="x_100">50px</dimen>
+    <dimen name="x_120">60px</dimen>
+    <dimen name="x_130">65px</dimen>
+    <dimen name="x_150">75px</dimen>
+    <dimen name="x_160">80px</dimen>
+    <dimen name="x_172">86px</dimen>
+    <dimen name="x_180">90px</dimen>
+    <dimen name="x_200">100px</dimen>
+    <dimen name="x_220">110px</dimen>
+    <dimen name="x_233">116.5px</dimen>
+    <dimen name="x_250">125px</dimen>
+    <dimen name="x_253">126.5px</dimen>
+    <dimen name="x_260">130px</dimen>
+    <dimen name="x_280">140px</dimen>
+    <dimen name="x_320">160px</dimen>
+    <dimen name="x_360">180px</dimen>
+    <dimen name="x_480">240px</dimen>
+    <dimen name="x_640">320px</dimen>
+    <dimen name="x_680">340px</dimen>
+    <dimen name="x_8">4px</dimen>
+</resources>

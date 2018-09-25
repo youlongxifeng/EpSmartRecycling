@@ -1,6 +1,7 @@
 package cn.epsmart.recycling.device.ui.fragment.signin;
 
 import android.view.View;
+import android.view.ViewGroup;
 
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpFragment;
@@ -17,9 +18,14 @@ public class SignInFragment extends BaseMvpFragment {
         return null;
     }
 
-    @Override
+     @Override
     protected int getlayoutId() {
         return R.layout.activity_sigin_main;
+    }
+
+    @Override
+    protected View getRootView(ViewGroup container) {
+        return mInflater.inflate( R.layout.activity_sigin_main,container,false);
     }
 
     @Override

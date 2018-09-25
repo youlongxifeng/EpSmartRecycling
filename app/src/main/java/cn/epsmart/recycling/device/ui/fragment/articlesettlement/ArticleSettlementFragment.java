@@ -2,6 +2,7 @@ package cn.epsmart.recycling.device.ui.fragment.articlesettlement;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -62,6 +63,12 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
     protected int getlayoutId() {
         return R.layout.fragment_articlesettlement_main;
     }
+    @Override
+    protected View getRootView(ViewGroup container) {
+        return mInflater.inflate( R.layout.fragment_articlesettlement_main,container,false);
+    }
+
+
 
     @Override
     protected void initView(View view) {
@@ -96,6 +103,9 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
                 MessageEvent<RecoveryTypeBean> messageEvent= new MessageEvent();
                 messageEvent.setT(mRecoveryTypeBean);
                 EventBus.getDefault().post(mRecoveryTypeBean);
+                Bundle bundle = new Bundle();
+                bundle.putString(HomeFragment.KEY_RESULT_TITLE, "返回有用的数据");
+                setFragmentResult(RESULT_OK, bundle);
                 pop();
                 break;
             default:

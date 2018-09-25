@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,7 +15,6 @@ import android.widget.Toast;
 import com.company.project.android.utils.LogUtils;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
-import org.greenrobot.eventbus.NoSubscriberEvent;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -27,7 +27,6 @@ import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpFragment;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
 import cn.epsmart.recycling.device.observer.SmartEvents;
-import cn.epsmart.recycling.device.ui.fragment.ContextFragment;
 import cn.epsmart.recycling.device.ui.fragment.articlesettlement.ArticleSettlementFragment;
 import cn.epsmart.recycling.device.ui.fragment.home.adapter.RecoveryTypeAdapter;
 import cn.epsmart.recycling.device.ui.fragment.home.adapter.TotalRriceAdapter;
@@ -60,7 +59,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
      */
     private TotalRriceAdapter mTotalRriceAdapter;
     /**
-     *收益总额
+     * 收益总额
      */
     private double mTotalPriceValue;
     private List<RecoveryTypeBean> mRecoveryTypeBeanList;
@@ -84,6 +83,11 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     @Override
     protected int getlayoutId() {
         return R.layout.fragment_home_main;
+    }
+
+    @Override
+    protected View getRootView(ViewGroup container) {
+        return mInflater.inflate(R.layout.fragment_home_main, container, false);
     }
 
     @Override
@@ -136,13 +140,13 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         LogUtils.i(TAG, "active=" + active);
         mRecoveryTypeBeanList.clear();
         mRecoveryTypeBeanList.addAll(active);
-        mRecoveryTypeAdapter = new RecoveryTypeAdapter(this,getActivity(), R.layout.recovery_type_item, mRecoveryTypeBeanList);
+        mRecoveryTypeAdapter = new RecoveryTypeAdapter(this, getActivity(), R.layout.recovery_type_item, mRecoveryTypeBeanList);
         mRcvRecoveryTypeList.setAdapter(mRecoveryTypeAdapter);
         mRecoveryTypeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 RecoveryTypeBean recoveryTypeBean = mRecoveryTypeAdapter.getDatas().get(position);
-                ((ContextFragment) getParentFragment()).startForResult(ArticleSettlementFragment.newInstance(recoveryTypeBean), REQ_MODIFY_FRAGMENT);
+                startForResult(ArticleSettlementFragment.newInstance(recoveryTypeBean), REQ_MODIFY_FRAGMENT);
             }
 
             @Override
@@ -172,7 +176,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     @Override
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
         super.onFragmentResult(requestCode, resultCode, data);
-        LogUtils.i(TAG, "===========resultCode=" + resultCode);
+        LogUtils.i(TAG, "===========resultCode=" + resultCode+"  requestCode="+requestCode);
         if (requestCode == REQ_MODIFY_FRAGMENT && resultCode == RESULT_OK && data != null) {
             String mTitle = data.getString(KEY_RESULT_TITLE);
             Toast.makeText(_mActivity, "返回参数 mTitle=" + mTitle, Toast.LENGTH_SHORT).show();

@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.company.project.android.utils.LogUtils;
 
+import org.greenrobot.greendao.rx.RxDao;
+
 import butterknife.BindView;
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpActivity;
@@ -35,7 +37,7 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
     /**
      * 二维码地址
      */
-    private String mQRCodeUrl = "https://www.baidu.com/";
+    private String mQRCodeUrl = "http://192.168.0.42:8080/v1/fxhb/api/qrcode/getLoginQrcode?width=400";
 
 
     @Override
@@ -47,7 +49,6 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
     public int getlayoutId() {
         return R.layout.activity_sigin_main;
     }
-
 
     @Override
     public void initView() {
@@ -76,12 +77,13 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
 
         // 设置网页用webView来打开，覆盖默认使用第三方或系统默认浏览器打开网页的行为
         mProgresswebview.setWebViewClient(new WebViewClient() {
+            //拦截 url 跳转,在里边添加点击链接跳转或者操作
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
                 LogUtils.i(TAG, "shouldOverrideUrlLoading url=" + url);
                 // view.loadUrl(url);
-                runOnUiThread(new Runnable() {
+               runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         try {
@@ -123,6 +125,7 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
             }
         });
         mProgresswebview.loadUrl(mQRCodeUrl);
+        signInSuccess("");
     }
 
     @Override

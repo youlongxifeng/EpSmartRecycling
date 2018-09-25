@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_recycler_state"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/data_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+   >
+
+
+        <ImageView
+            android:id="@+id/iv_load_img"
+            android:layout_width="@dimen/x_180"
+            android:layout_height="@dimen/x_180"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_load_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/x_20"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="@dimen/x_62"
+                android:layout_height="@dimen/x_62"
+                android:indeterminateDrawable="@drawable/indicate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x_4"
+                android:text="@string/loading_data"
+                android:textColor="@color/color_primary_blue"
+                android:textSize="@dimen/x_24" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/data_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      >
+
+
+        <ImageView
+            android:id="@+id/iv_error_load"
+            android:layout_width="@dimen/x_180"
+            android:layout_height="@dimen/x_180"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_reloads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_error_load"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/x_32"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/load_error"
+            android:textColor="@color/color_primary_blue"
+            android:textSize="@dimen/x_24" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/data_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+
+        <ImageView
+            android:id="@+id/iv_load_empty"
+            android:layout_width="@dimen/x_180"
+            android:layout_height="@dimen/x_180"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_load_empty"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/x_32"
+            android:clickable="true"
+            android:text="@string/load_empty"
+            android:textColor="@color/color_primary_blue"
+            android:textSize="@dimen/x_24" />
+    </RelativeLayout>
+</FrameLayout>

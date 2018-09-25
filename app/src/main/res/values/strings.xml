@@ -13,4 +13,8 @@
     <!--首页start-->
     <string name="exit_logon">退出登录</string>
     <string name="total_income_name">本次总收益：</string>
+
+    <!--load-content-view start-->
+    <string name="load_error">数据加载错误</string>
+    <string name="load_empty">当前数据为空</string>
 </resources>

@@ -27,9 +27,13 @@
     <dimen name="x_130">130px</dimen>
     <dimen name="x_150">150px</dimen>
     <dimen name="x_160">160px</dimen>
+    <dimen name="x_172">172px</dimen>
     <dimen name="x_180">180px</dimen>
     <dimen name="x_200">200px</dimen>
     <dimen name="x_220">220px</dimen>
+    <dimen name="x_233">233px</dimen>
+    <dimen name="x_250">250px</dimen>
+    <dimen name="x_253">253px</dimen>
     <dimen name="x_260">260px</dimen>
     <dimen name="x_280">280px</dimen>
     <dimen name="x_320">320px</dimen>
