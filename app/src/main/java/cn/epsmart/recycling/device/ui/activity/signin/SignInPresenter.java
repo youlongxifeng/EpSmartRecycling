@@ -22,6 +22,7 @@ public class SignInPresenter extends SignInContract.Presenter {
                     public void onNext(UserBean userBean) {
                         if (mView != null) {
                            // UserBean userBean = responseBean.getData();
+
                             mView.signInSuccess(userBean);
                         }
 

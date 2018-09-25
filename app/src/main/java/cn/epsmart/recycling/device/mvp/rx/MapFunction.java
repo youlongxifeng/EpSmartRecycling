@@ -15,8 +15,7 @@ public class MapFunction<F> implements Function<ResponseBean<F>, F> {
         if (code == ResponseBean.CODE_SUCCESS || code == ResponseBean.CODE_SUCCESS0) {
             return fResponseBean.getData();
         } else {
-           // throw new ApiException(f.getMsg(), f.getCode());
-            return null;
+            throw new ApiException(fResponseBean.getMsg(), fResponseBean.getCode());
         }
     }
 }

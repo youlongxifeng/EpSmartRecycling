@@ -101,7 +101,11 @@ public class RxHelper {
     }
 
 
-
+    /**
+     *
+     * @param <T>
+     * @return
+     */
     public static <T> ObservableTransformer<ResponseBean<T>, T> combineObservable() {
         return new ObservableTransformer<ResponseBean<T>, T>() {
             @Override

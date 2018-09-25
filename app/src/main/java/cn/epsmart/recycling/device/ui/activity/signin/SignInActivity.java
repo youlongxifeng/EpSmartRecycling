@@ -7,23 +7,19 @@ import android.graphics.Color;
 import android.net.http.SslError;
 import android.os.Build;
 import android.view.KeyEvent;
-import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.company.project.android.utils.LogUtils;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpActivity;
 import cn.epsmart.recycling.device.entity.UserBean;
-import cn.epsmart.recycling.device.mvp.BasePresenter;
 import cn.epsmart.recycling.device.ui.activity.main.MainActivity;
 import cn.epsmart.recycling.device.utils.ProgressWebView;
 
@@ -41,6 +37,7 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
      */
     private String mQRCodeUrl = "https://www.baidu.com/";
 
+
     @Override
     public SignInPresenter setPresenter() {
         return new SignInPresenter();
@@ -55,6 +52,7 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
     @Override
     public void initView() {
         initWebView();
+
     }
 
     @SuppressLint("JavascriptInterface")
@@ -122,7 +120,6 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 LogUtils.i(TAG, "onPageFinished  url:" + url);
-
             }
         });
         mProgresswebview.loadUrl(mQRCodeUrl);

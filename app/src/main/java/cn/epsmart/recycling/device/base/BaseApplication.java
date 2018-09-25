@@ -11,9 +11,12 @@ import com.company.project.android.utils.LogUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.greenrobot.greendao.database.Database;
 
 import java.util.List;
 
+import cn.epsmart.recycling.device.entity.DaoMaster;
+import cn.epsmart.recycling.device.entity.DaoSession;
 import cn.epsmart.recycling.device.observer.SmartEvents;
 
 /**
@@ -28,11 +31,20 @@ public class BaseApplication extends Application {
      */
     private int mMainThreadId;
     private Handler mHandler;
-
+    private DaoSession daoSession;
     @Override
     public void onCreate() {
         super.onCreate();
         mContext = this;
+        // regular SQLite database
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "notes-db");
+        Database db = helper.getWritableDb();
+        // encrypted SQLCipher database
+        // note: you need to add SQLCipher to your dependencies, check the build.gradle file
+        // DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "notes-db-encrypted");
+        // Database db = helper.getEncryptedWritableDb("encryption-key");
+
+        daoSession = new DaoMaster(db).newSession();
         mHandler = new Handler();
         mMainThreadId = android.os.Process.myTid();
         LogUtils.init(null, true, true);
@@ -44,7 +56,9 @@ public class BaseApplication extends Application {
             }
         });
     }
-
+    public DaoSession getDaoSession() {
+        return daoSession;
+    }
     public static BaseApplication getContext() {
         return mContext;
     }

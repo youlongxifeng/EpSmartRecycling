@@ -11,6 +11,7 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 
+import cn.epsmart.recycling.device.manage.UserInfoManager;
 import retrofit2.HttpException;
 
 /**
@@ -18,9 +19,7 @@ import retrofit2.HttpException;
  * @Time: 2018 2018/9/21 15:13
  * @description: （添加一句描述）
  */
-public class ApiException  extends RuntimeException {
-
-    public static final String API_EXCEPTION = "api_exception";
+public class ApiException extends RuntimeException {
 
     //对应HTTP的状态码
     private static final int UNAUTHORIZED = 401;
@@ -61,28 +60,45 @@ public class ApiException  extends RuntimeException {
         ApiException apiEx;
         if (e instanceof HttpException) { //HTTP错误
             HttpException httpEx = (HttpException) e;
+            String msg = null;
             switch (httpEx.code()) {
                 case UNAUTHORIZED:
+                    msg = "请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用";
+                    break;
                 case FORBIDDEN:
+                    msg = "禁止访问，服务器收到请求，但是拒绝提供服务";
+                    break;
                 case NOT_FOUND:
+                    msg = "可连接服务器，但服务器无法取得所请求的网页，请求资源不存在";
+                    break;
                 case REQUEST_TIMEOUT:
+                    msg = "客户端没有在用户指定的饿时间内完成请求";
+                    break;
                 case GATEWAY_TIMEOUT:
+                    msg = "服务器作为网关或代理，但是没有及时从上游服务器收到请求。 ";
+                    break;
                 case INTERNAL_SERVER_ERROR:
+                    msg = "服务器遇到错误，无法完成请求";
+                    break;
                 case BAD_GATEWAY:
+                    msg = "服务器作为网关或代理，从上游服务器收到无效响应。";
+                    break;
                 case SERVICE_UNAVAILABLE:
+                    msg = "服务器目前无法使用（由于超载或停机维护）。通常，这只是暂时状态";
+                    break;
                 default:
-                    String msg = "网络异常，请检查网络后点击重试";
+                    msg = "网络异常，请检查网络后点击重试";
                     apiEx = new ApiException(msg, ServerConstant.ERROR_HTTP); // 均视为网络错误
                     break;
             }
+            apiEx = new ApiException(msg, ServerConstant.ERROR_HTTP); // 均视为网络错误
             return apiEx;
         } else if (e instanceof ApiException) {
             //服务器返回的错误
             // 4019 token 失效，统一弹框处理
             if (ServerConstant.CODE_TOKEN_INVALID == ((ApiException) e).getCode()) {
                 ((ApiException) e).setMsg("");
-              /*  //删除userBean
-                UserManager.getInstance().deleteUserBeanAsy();*/
+                UserInfoManager.getInstance().deleteUserBeanAsy();
             }
             return (ApiException) e;
         } else if (e instanceof JsonParseException

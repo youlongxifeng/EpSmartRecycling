@@ -36,6 +36,7 @@ public class ByteUtil {
      */
     public static String bytes2HexStr(byte[] src, int dec, int length) {
         byte[] temp = new byte[length];
+        //src表示源数组，srcPos表示源数组要复制的起始位置，desc表示目标数组，length表示要复制的长度
         System.arraycopy(src, dec, temp, 0, length);
         return bytes2HexStr(temp);
     }

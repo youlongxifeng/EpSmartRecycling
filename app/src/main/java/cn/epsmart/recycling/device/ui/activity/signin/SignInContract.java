@@ -32,6 +32,7 @@ public interface SignInContract {
         Flowable<ResponseBean<UserBean>> userLogin(String phoneNumber, String password);
     }
     abstract class Presenter extends BasePresenter<View, Model> {
+
         /**
          * 更新位置信息
          */

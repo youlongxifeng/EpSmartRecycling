@@ -53,20 +53,6 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> {
 
     @Override
     public void initDate() {
-     /*   new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    try {
-                        ++count;
-                        messageQueuingManager.put("zhangsan"+count);
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();*/
         messageQueuingManager.start();
 
         DisplayMetrics dm = new DisplayMetrics();
