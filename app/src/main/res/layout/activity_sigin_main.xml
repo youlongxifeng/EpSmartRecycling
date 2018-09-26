@@ -1,15 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@color/color_3f3f3f"
     android:gravity="center">
+
+   <!-- <cn.epsmart.recycling.device.widget.CustomVideoView
+        android:id="@+id/videoview_advertisement"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </cn.epsmart.recycling.device.widget.CustomVideoView>-->
+
 
     <cn.epsmart.recycling.device.utils.ProgressWebView
         android:id="@+id/sigin_progresswebview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-    </cn.epsmart.recycling.device.utils.ProgressWebView>
+    ></cn.epsmart.recycling.device.utils.ProgressWebView>
 
-</RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/btn_signin"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_green_content_normal"
+            android:text="登录"
+            android:textColor="@color/color_theme_ffffff"
+            android:textSize="18dp" />
+
+
+        <Button
+            android:id="@+id/btn_display_scavenging"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_green_content_normal"
+            android:text="显示登录二维码"
+            android:textColor="@color/color_theme_ffffff"
+            android:textSize="18dp" />
+
+
+        <Button
+            android:id="@+id/btn_hidden_scavenging"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_green_content_normal"
+            android:text="隐藏登录二维码"
+            android:textColor="@color/color_theme_ffffff"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+
+</FrameLayout>

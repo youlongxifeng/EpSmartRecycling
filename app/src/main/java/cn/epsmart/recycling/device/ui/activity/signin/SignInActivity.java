@@ -4,14 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.company.project.android.utils.LogUtils;
@@ -24,6 +28,7 @@ import cn.epsmart.recycling.device.base.BaseMvpActivity;
 import cn.epsmart.recycling.device.entity.UserBean;
 import cn.epsmart.recycling.device.ui.activity.main.MainActivity;
 import cn.epsmart.recycling.device.utils.ProgressWebView;
+import cn.epsmart.recycling.device.widget.CustomVideoView;
 
 /**
  * @Author: Administrator
@@ -34,10 +39,18 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
     private final static String TAG = SignInActivity.class.getSimpleName();
     @BindView(R.id.sigin_progresswebview)
     ProgressWebView mProgresswebview;
+   /* @BindView(R.id.videoview_advertisement)
+    CustomVideoView mCustomVideoView;*/
+    @BindView(R.id.btn_signin)
+    Button mSignin;
+    @BindView(R.id.btn_display_scavenging)
+    Button mDisplayScavenging;
+    @BindView(R.id.btn_hidden_scavenging)
+    Button mHiddenScavenging;
     /**
      * 二维码地址
      */
-    private String mQRCodeUrl = "http://192.168.0.42:8080/v1/fxhb/api/qrcode/getLoginQrcode?width=400";
+    private String mQRCodeUrl = "http://192.168.0.42:8080/fxhb/device/qrcodeLogin";
 
 
     @Override
@@ -53,7 +66,45 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
     @Override
     public void initView() {
         initWebView();
+        initAdvertisementView();
+        mSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signInSuccess("");
+            }
+        });
+        mDisplayScavenging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mProgresswebview.setVisibility(View.VISIBLE);
+                mProgresswebview.loadUrl(mQRCodeUrl);
+             //   mCustomVideoView.pause();
+            }
+        });
+        mHiddenScavenging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mProgresswebview.setVisibility(View.GONE);
+             //   mCustomVideoView.start();
+            }
+        });
+    }
 
+    /**
+     * 初始化广告界面
+     */
+    private void initAdvertisementView(){
+      /*  mCustomVideoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.sport));
+
+        //播放
+        mCustomVideoView.start();
+        //循环播放
+        mCustomVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mCustomVideoView.start();
+            }
+        });*/
     }
 
     @SuppressLint("JavascriptInterface")
@@ -83,7 +134,7 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
                 LogUtils.i(TAG, "shouldOverrideUrlLoading url=" + url);
                 // view.loadUrl(url);
-               runOnUiThread(new Runnable() {
+              /* runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         try {
@@ -93,7 +144,7 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
                         }
                         signInSuccess("");
                     }
-                });
+                });*/
                 return true;
             }
 
@@ -125,7 +176,6 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
             }
         });
         mProgresswebview.loadUrl(mQRCodeUrl);
-        signInSuccess("");
     }
 
     @Override

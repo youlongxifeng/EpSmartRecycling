@@ -86,11 +86,6 @@ public class LoadContentView extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         mContentView = getChildAt(0);
-        LogUtils.i(TAG, "mRecyclerState==" + (mRecyclerState == null));
-        LogUtils.i(TAG, "mLoadingView==" + (mLoadingView == null));
-        LogUtils.i(TAG, "mErrorView==" + (mErrorView == null));
-        LogUtils.i(TAG, "mEmptyView==" + (mEmptyView == null));
-        LogUtils.i(TAG, "mContentView==" + (mContentView == null));
         if (mContentView == null) {
             throw new RuntimeException("缺少View");
         }

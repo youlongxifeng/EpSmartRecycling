@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
+import cn.epsmart.recycling.device.mvp.rx.ApiException;
+import cn.epsmart.recycling.device.mvp.rx.HttpDisposableObserver;
 import cn.epsmart.recycling.device.mvp.rx.RxSchedulers;
 import io.reactivex.observers.DisposableObserver;
 
@@ -17,6 +20,8 @@ import io.reactivex.observers.DisposableObserver;
 public class HomePresenter extends HomeContract.Presenter {
     private final static String TAG = HomePresenter.class.getSimpleName();
     private String[] mTypeName = {"纸类", "塑料", "金属", "纺织品", "玻璃", "有害"};
+    private int[] mPrice = {15, 11, 12, 22, 0,0};
+    private int[] mIcon = {R.mipmap.paper,R.mipmap.plastic, R.mipmap.metal,R.mipmap.clothes, R.mipmap.glass, R.mipmap.harmful};
 
     public HomePresenter() {
         mModel = new HomeModel();
@@ -36,8 +41,9 @@ public class HomePresenter extends HomeContract.Presenter {
         for (int i = 0; i < mTypeName.length; i++) {
             RecoveryTypeBean recoveryTypeBean = new RecoveryTypeBean();
             recoveryTypeBean.setId(i);
-            recoveryTypeBean.setmRecoveryPrice(i + 1);
+            recoveryTypeBean.setmRecoveryPrice(mPrice[i]);
             recoveryTypeBean.setmRecoveryType(mTypeName[i]);
+            recoveryTypeBean.setmIcon(mIcon[i]);
             mRecoveryTypeBeanList.add(recoveryTypeBean);
         }
 
@@ -58,8 +64,8 @@ public class HomePresenter extends HomeContract.Presenter {
 
     }
 
-    private DisposableObserver<List<RecoveryTypeBean>> getDisposableObserver() {
-        return new DisposableObserver<List<RecoveryTypeBean>>() {
+    private HttpDisposableObserver<List<RecoveryTypeBean>> getDisposableObserver() {
+        return new HttpDisposableObserver<List<RecoveryTypeBean>>() {
             @Override
             public void onNext(List<RecoveryTypeBean> recoveryTypeBeans) {
                 if (mView != null) {
@@ -68,12 +74,7 @@ public class HomePresenter extends HomeContract.Presenter {
             }
 
             @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
+            public void onError(ApiException e) {
 
             }
         };

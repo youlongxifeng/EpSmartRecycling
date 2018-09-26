@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import java.io.File;
 import java.util.List;
 
 import cn.epsmart.recycling.device.R;
@@ -15,6 +16,7 @@ import cn.epsmart.recycling.device.base.BaseRecyclerViewAdapter;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
 import cn.epsmart.recycling.device.ui.fragment.home.HomeFragment;
 import cn.epsmart.recycling.device.utils.ImageUtil;
+import cn.epsmart.recycling.device.utils.UIUtils;
 
 /**
  * @Author: Administrator
@@ -22,10 +24,11 @@ import cn.epsmart.recycling.device.utils.ImageUtil;
  * @description: （回收类型适配器）
  */
 public class RecoveryTypeAdapter extends BaseRecyclerViewAdapter<RecoveryTypeBean> {
-    private  HomeFragment mHomeFragment;
-    public RecoveryTypeAdapter(HomeFragment homeFragment,Context context, int layoutId, List<RecoveryTypeBean> data) {
+    private HomeFragment mHomeFragment;
+
+    public RecoveryTypeAdapter(HomeFragment homeFragment, Context context, int layoutId, List<RecoveryTypeBean> data) {
         super(context, layoutId, data);
-        this.mHomeFragment=homeFragment;
+        this.mHomeFragment = homeFragment;
     }
 
     @Override
@@ -34,8 +37,9 @@ public class RecoveryTypeAdapter extends BaseRecyclerViewAdapter<RecoveryTypeBea
         TextView mRecoveryTypeTitle = holder.getView(R.id.tv_recovery_type_title);
         TextView mRecoveryTypePrice = holder.getView(R.id.tv_recovery_type_price);
         mRecoveryTypeTitle.setText(recoveryTypeBean.getmRecoveryType());
-        mRecoveryTypePrice.setText(String.valueOf(recoveryTypeBean.getmRecoveryPrice()));
-       // Glide.with(mHomeFragment).load("http://img5.imgtn.bdimg.com/it/u=1317134202,1980401867&fm=27&gp=0.jpg").into(mRecoveryTypeIcon);
-        ImageUtil.setImageViewResId(mRecoveryTypeIcon,"http://img5.imgtn.bdimg.com/it/u=1317134202,1980401867&fm=27&gp=0.jpg",R.mipmap.ic_launcher);
+        mRecoveryTypePrice.setText(String.valueOf(recoveryTypeBean.getmRecoveryPrice())+ UIUtils.getString(R.string.element_name)+ File.separator+UIUtils.getString(R.string.catty_name));
+        // Glide.with(mHomeFragment).load("http://img5.imgtn.bdimg.com/it/u=1317134202,1980401867&fm=27&gp=0.jpg").into(mRecoveryTypeIcon);
+        //  ImageUtil.setImageViewResId(mRecoveryTypeIcon,"http://img5.imgtn.bdimg.com/it/u=1317134202,1980401867&fm=27&gp=0.jpg",R.mipmap.ic_launcher);
+        ImageUtil.setImageViewResId(mRecoveryTypeIcon, recoveryTypeBean.getmIcon(), R.mipmap.ic_launcher);
     }
 }

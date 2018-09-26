@@ -56,4 +56,11 @@ public class UIUtils {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
+
+    /**
+     * 得到string.xml中的一个字符串
+     */
+    public static String getString(int resId) {
+        return getResources().getString(resId);
+    }
 }

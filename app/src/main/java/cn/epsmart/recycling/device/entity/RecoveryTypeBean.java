@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class RecoveryTypeBean implements Serializable {
     private long id;
     private String mRecoveryType;
+    private int mIcon;
     private float mRecoveryPrice;
 
     public long getId() {
@@ -36,12 +37,25 @@ public class RecoveryTypeBean implements Serializable {
         this.mRecoveryPrice = mRecoveryPrice;
     }
 
+    public int getmIcon() {
+        return mIcon;
+    }
+
+    public void setmIcon(int mIcon) {
+        this.mIcon = mIcon;
+    }
+
+    public void setmRecoveryPrice(float mRecoveryPrice) {
+        this.mRecoveryPrice = mRecoveryPrice;
+    }
+
     @Override
     public String toString() {
         return "RecoveryTypeBean{" +
                 "id=" + id +
                 ", mRecoveryType='" + mRecoveryType + '\'' +
-                ", mRecoveryPrice='" + mRecoveryPrice + '\'' +
+                ", mIcon=" + mIcon +
+                ", mRecoveryPrice=" + mRecoveryPrice +
                 '}';
     }
 }

@@ -103,9 +103,9 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
                 MessageEvent<RecoveryTypeBean> messageEvent= new MessageEvent();
                 messageEvent.setT(mRecoveryTypeBean);
                 EventBus.getDefault().post(mRecoveryTypeBean);
-                Bundle bundle = new Bundle();
+                /*Bundle bundle = new Bundle();//当前环境已经可以反悔信息了
                 bundle.putString(HomeFragment.KEY_RESULT_TITLE, "返回有用的数据");
-                setFragmentResult(RESULT_OK, bundle);
+                setFragmentResult(RESULT_OK, bundle);*/
                 pop();
                 break;
             default:

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_recovery_type"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/x_320"
+    android:layout_height="@dimen/x_360"
     android:background="@drawable/bg_theme_circle"
     android:layout_gravity="center" >
 
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/tv_recovery_type_title"
-        android:layout_width="@dimen/x_100"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_recovery_type_icon"
         android:layout_centerHorizontal="true"
@@ -27,12 +27,12 @@
         android:paddingTop="@dimen/x_4"
         android:singleLine="true"
         android:text="纸类"
-        android:textColor="@color/color_b2000000"
+        android:textColor="@color/color_theme_ffffff"
         android:textSize="@dimen/x_30" />
 
     <TextView
         android:id="@+id/tv_recovery_type_price"
-        android:layout_width="@dimen/x_120"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_recovery_type_title"
         android:layout_centerHorizontal="true"
@@ -40,7 +40,7 @@
         android:paddingTop="@dimen/x_8"
         android:singleLine="true"
         android:text="10元/斤"
-        android:textColor="@color/color_b2000000"
+        android:textColor="@color/color_theme_ffffff"
         android:textSize="@dimen/x_30" />
 
 </RelativeLayout>

@@ -11,4 +11,5 @@
     <color name="color_theme_ffffff">#FFFFFF</color>
     <color name="theme_color_primary">#27408A</color>
     <color name="theme_color_primary_dark">#f44336</color>
+    <color name="color_preimary_greens">#4cbfb5</color>
 </resources>
