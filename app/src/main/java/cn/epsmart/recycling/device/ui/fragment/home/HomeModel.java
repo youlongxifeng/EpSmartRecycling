@@ -14,7 +14,7 @@ import okhttp3.RequestBody;
  */
 public class HomeModel implements HomeContract.Model {
     @Override
-    public Observable<List<RecoveryTypeBean>> getDeliveryData() {
-        return ApiEngine.getInstance().getApiService().getGank("1");
+    public Observable<List<RecoveryTypeBean>> getDeliveryData( int pageSize, int curPage) {
+        return ApiEngine.getInstance().getApiService().getrecoveryTypesData(   pageSize,   curPage);
     }
 }

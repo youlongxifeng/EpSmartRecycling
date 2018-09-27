@@ -1,6 +1,7 @@
 package cn.epsmart.recycling.device.ui.activity.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 
 import com.company.project.android.utils.LogUtils;
@@ -14,6 +15,7 @@ import cn.epsmart.recycling.device.entity.UserBeanDao;
 import cn.epsmart.recycling.device.manage.MessageQueuingManager;
 import cn.epsmart.recycling.device.manage.serialport.Device;
 import cn.epsmart.recycling.device.manage.serialport.SerialPortManager;
+import cn.epsmart.recycling.device.service.GuardService;
 import cn.epsmart.recycling.device.ui.fragment.home.HomeFragment;
 
 /**
@@ -78,6 +80,8 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> {
         Device mDevice = new Device("dev/ttyS3", "9600");
         SerialPortManager.instance().open(mDevice);//打开串口
         // SerialPortManager.instance().sendCommand(text);//发送串口数据
+
+        startService(new Intent(MainActivity.this,GuardService.class));
 
     }
 

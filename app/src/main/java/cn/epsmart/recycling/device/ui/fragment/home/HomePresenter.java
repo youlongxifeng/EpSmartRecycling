@@ -9,6 +9,7 @@ import java.util.Map;
 
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseApplication;
+import cn.epsmart.recycling.device.constant.Constant;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
 import cn.epsmart.recycling.device.mvp.rx.ApiException;
 import cn.epsmart.recycling.device.mvp.rx.HttpDisposableObserver;
@@ -24,6 +25,7 @@ public class HomePresenter extends HomeContract.Presenter {
     private String[] mTypeName = {"纸类", "塑料", "金属", "纺织品", "玻璃", "有害"};
     private int[] mPrice = {15, 11, 12, 22, 0, 0};
     private int[] mIcon = {R.mipmap.paper, R.mipmap.plastic, R.mipmap.metal, R.mipmap.clothes, R.mipmap.glass, R.mipmap.harmful};
+    private int curpage=1;
 
     public HomePresenter() {
         mModel = new HomeModel();
@@ -37,20 +39,20 @@ public class HomePresenter extends HomeContract.Presenter {
         }
     }
 
+    /**
+     * 获取回收类型数据
+     *
+     * @param maps
+     */
     @Override
     public void getDeliveryData(Map<String, String> maps) {
         DisposableObserver<List<RecoveryTypeBean>> disposableObserver = getDisposableObserver();
-        mModel.getDeliveryData()
+        mModel.getDeliveryData(Constant.PAGE_SIZE,curpage)
                 .compose(RxSchedulers.<List<RecoveryTypeBean>>switchObservableThread())
                 .subscribe(disposableObserver);
         addSubscribe(disposableObserver);
-
     }
 
-    @Override
-    public void getObviousIncomeData(Map<String, String> maps) {
-
-    }
 
     private HttpDisposableObserver<List<RecoveryTypeBean>> getDisposableObserver() {
         return new HttpDisposableObserver<List<RecoveryTypeBean>>() {
@@ -79,8 +81,7 @@ public class HomePresenter extends HomeContract.Presenter {
                         mView.setDeliveryDataSucceed(mRecoveryTypeBeanList);
                         //mView.setDeliveryDataFail(e.getMsg());
                     }
-                } else {
-                }
+                } else {                }
 
             }
         };

@@ -18,47 +18,50 @@
 
     <!-- Normal Permissions 不需要运行时注册 -->
     <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
 
     <!-- 请求网络 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- 不是SDK需要的权限，是示例中的后台唤醒定位需要的权限 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- 需要运行时注册的权限 -->
     <!-- 用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 用于提高GPS定位速度 -->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <!-- 写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 读取缓存数据 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- 用于读取手机当前的状态 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <!-- 更改设置 -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
     <!-- 3.2.0版本增加 -->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!-- 3.2.0版本增加 -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
-    <uses-permission android:name="android.permission.READ_FRAME_BUFFER"
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission
+        android:name="android.permission.READ_FRAME_BUFFER"
         tools:ignore="ProtectedPermissions" />
 
     <!-- Needed to allow Linphone to install on tablets, since android.permission.CAMERA implies android.hardware.camera and android.hardware.camera.autofocus are required -->
@@ -74,25 +77,43 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-     <!--   <activity android:name=".ui.activity.signin.SignInActivity">-->
-        <activity android:name=".ui.activity.main.MainActivity">
+        <!--   <activity android:name=".ui.activity.signin.SignInActivity">-->
+        <activity
+            android:name=".ui.activity.main.MainActivity"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:enabled="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:resumeWhilePausing="true"
+            android:screenOrientation="nosensor"
+            android:stateNotNeeded="true"
+            android:taskAffinity=""
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+
             </intent-filter>
         </activity>
-     <!--   <activity android:name=".ui.activity.main.MainActivity"></activity>-->
+       <!-- <category android:name="android.intent.category.HOME" />
+        <category android:name="android.intent.category.MONKEY" />
+        <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--   <activity android:name=".ui.activity.main.MainActivity"></activity>-->
 
+
+        <service
+            android:name=".service.GuardService"
+            android:process=":guardservice"/>
 
         <!--高德地图start==============================-->
         <!-- 设置key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="ce238f838d04da801f27a0f468034de0"/>
+            android:value="ce238f838d04da801f27a0f468034de0" />
         <!-- 定位需要的服务 -->
-        <service android:name="com.amap.api.location.APSService">
-        </service>
+        <service android:name="com.amap.api.location.APSService"></service>
         <!--高德地图end==============================-->
     </application>
 

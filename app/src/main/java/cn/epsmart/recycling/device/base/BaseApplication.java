@@ -1,9 +1,11 @@
 package cn.epsmart.recycling.device.base;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
@@ -49,12 +51,19 @@ public class BaseApplication extends Application {
         mMainThreadId = android.os.Process.myTid();
         LogUtils.init(null, true, true);
         SmartEvents.register(this);
-        SmartEvents.post(new Runnable() {
+        ForegroundCallbacks foregroundCallbacks=ForegroundCallbacks.init(this);
+        foregroundCallbacks.addListener(new ForegroundCallbacks.Listener() {
             @Override
-            public void run() {
-                LogUtils.i("=======================");
+            public void onBecameForeground() {
+
+            }
+
+            @Override
+            public void onBecameBackground() {
+
             }
         });
+        registerActivityLifecycleCallbacks(foregroundCallbacks);
     }
     public DaoSession getDaoSession() {
         return daoSession;
@@ -97,19 +106,6 @@ public class BaseApplication extends Application {
 
     public boolean wasBackground = false;    //声明一个布尔变量,记录当前的活动背景
 
-    /*@Override
-    public void onPause() {
-        super.onPause();
-        if (isApplicationBroughtToBackground())
-            wasBackground = true;
-    }
 
-    public void onResume() {
-        super.onResume();
-        if (wasBackground) {//
-            Log.e("aa", "从后台回到前台");
-        }
-        wasBackground = false;
-    }*/
 }
 

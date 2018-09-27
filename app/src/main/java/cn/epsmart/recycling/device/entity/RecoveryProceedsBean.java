@@ -7,35 +7,48 @@ package cn.epsmart.recycling.device.entity;
  */
 public class RecoveryProceedsBean extends BaseBean {
     /**
+     * 类型
+     */
+    private String type;
+    /**
      * 收益指数
      */
-    private String mProceeds;
+    private String proceeds;
     /**
      * 价格单位
      */
-    private String mCompany;
+    private String company;
 
-    public String getmProceeds() {
-        return mProceeds;
+    public String getType() {
+        return type;
     }
 
-    public void setmProceeds(String mProceeds) {
-        this.mProceeds = mProceeds;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getmCompany() {
-        return mCompany;
+    public String getProceeds() {
+        return proceeds;
     }
 
-    public void setmCompany(String mCompany) {
-        this.mCompany = mCompany;
+    public void setProceeds(String proceeds) {
+        this.proceeds = proceeds;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     @Override
     public String toString() {
         return "RecoveryProceedsBean{" +
-                "mProceeds='" + mProceeds + '\'' +
-                ", mCompany='" + mCompany + '\'' +
+                "type='" + type + '\'' +
+                ", proceeds='" + proceeds + '\'' +
+                ", company='" + company + '\'' +
                 '}';
     }
 }

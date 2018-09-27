@@ -67,7 +67,7 @@ public interface ArticleSettlementContract {
          * 上报此次物品重量到服务器
          * @return
          */
-        Observable<ResponseBean<RecoveryProceedsBean>>  updateWeight(String weight, String type);
+        Observable<ResponseBean<RecoveryProceedsBean>>  updateWeight(String weight,String oldweight, String type);
 
 
     }
@@ -85,7 +85,7 @@ public interface ArticleSettlementContract {
         /**
          * 上报物品重量
          */
-        abstract void updateWeight(String weight,String type);
+        abstract void updateWeight(String weight,String oldweight,String type);
 
 
     }

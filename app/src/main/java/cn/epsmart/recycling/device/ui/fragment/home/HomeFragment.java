@@ -191,7 +191,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
      */
     private void updateTotalPrice(RecoveryProceedsBean recoveryTypeBean) {
         LogUtils.i(TAG,"recoveryTypeBean=="+recoveryTypeBean);
-        mTotalPriceValue +=Integer.valueOf(recoveryTypeBean.getmProceeds());
+        mTotalPriceValue +=Integer.valueOf(recoveryTypeBean.getProceeds());
         mTotalPrice.setText(mTotalPriceValue + getString(R.string.element_name));
     }
 

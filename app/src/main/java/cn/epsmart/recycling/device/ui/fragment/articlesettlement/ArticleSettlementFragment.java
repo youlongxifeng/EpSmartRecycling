@@ -25,6 +25,7 @@ import cn.epsmart.recycling.device.entity.UserBean;
 import cn.epsmart.recycling.device.entity.UserBeanDao;
 import cn.epsmart.recycling.device.observer.MessageEvent;
 import cn.epsmart.recycling.device.ui.fragment.home.HomeFragment;
+import cn.epsmart.recycling.device.widget.LoadingDialog;
 
 /**
  * @Author: Administrator
@@ -51,6 +52,8 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
     @BindView(R.id.tx_product_price)
     TextView mProductPrice;
 
+    private  LoadingDialog mLoadingDialog;
+
     private RecoveryTypeBean mRecoveryTypeBean;
 
     private UserBeanDao userBeanDao;
@@ -58,7 +61,7 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
     /**
      * 物品重量
      */
-    private long mWeightGoods;
+    private String mWeightGoods;
     private String mRecoveryType;
 
 
@@ -96,6 +99,10 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
             mProductPrice.setText("0");
             mPresenter.getHistoryWeightParameter(mRecoveryTypeBean);
         }
+        LoadingDialog.Builder builder1=new LoadingDialog.Builder(getActivity())
+                .setMessage(getString(R.string.loading_data))
+                .setCancelable(false);
+        mLoadingDialog=builder1.create();
     }
 
     @Override
@@ -116,7 +123,7 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
                 mBtnSettlement.setEnabled(false);
                 if (mRecoveryTypeBean != null) {//上传物品重量获取当前产品收益
                     mPresenter.getCurrentArticleWeight(mRecoveryTypeBean);
-
+                    mLoadingDialog.show();
                 }
                 break;
             case R.id.bt_delivery_other://返回继续投递
@@ -159,8 +166,8 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
     @Override
     public void historyWeightSuccess(SettlementBean settlenent) {
         LogUtils.i(TAG, "strWeight===" + settlenent);
-       // mProductType.setText(strWeight);
-        mProductWeight.setText(settlenent.getWeight());
+        mWeightGoods=settlenent.getWeight();
+        mProductWeight.setText(mWeightGoods);//显示历史重量
         mProductPrice.setText(settlenent.getPrice());
     }
 
@@ -181,9 +188,8 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
     public void presentArticleWeightSuccess(SettlementBean settlementBean) {
         LogUtils.i(TAG, "ArticleWeightSuccess ===" + settlementBean);
         mProductType.setText(mRecoveryTypeBean.getmRecoveryType());
-        mProductWeight.setText(settlementBean.getWeight() + getString(R.string.catty_name));
-        mProductPrice.setText(settlementBean.getPrice() + getString(R.string.element_name));
-        mPresenter.updateWeight(settlementBean.getWeight(),mRecoveryType);//数据获取成功后，需要上传当前重量到服务器，返回此次回收产生的收益
+        mProductWeight.setText(settlementBean.getWeight() + getString(R.string.catty_name)); //获取当前新的重量
+        mPresenter.updateWeight(settlementBean.getWeight(),String.valueOf(mWeightGoods),mRecoveryType);//数据获取成功后，需要上传当前重量到服务器，返回此次回收产生的收益
     }
 
     /**
@@ -198,7 +204,8 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
     @Override
     public void updateProceedsSuccess(RecoveryProceedsBean proceedsBean) {
         LogUtils.i("updateProceedsSuccess str=" + proceedsBean);
-        mProductPrice.setText(proceedsBean.getmProceeds()+ File.separator+proceedsBean.getmCompany());
+        mProductPrice.setText(proceedsBean.getProceeds()+proceedsBean.getCompany());
+        mLoadingDialog.dismiss();
         mBtnSettlement.setEnabled(true);
         mBtnSettlement.setVisibility(View.GONE);
         mBtnDeliveryOther.setVisibility(View.VISIBLE);

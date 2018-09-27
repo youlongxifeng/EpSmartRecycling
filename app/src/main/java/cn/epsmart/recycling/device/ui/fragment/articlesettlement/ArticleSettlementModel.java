@@ -47,7 +47,7 @@ public class ArticleSettlementModel implements ArticleSettlementContract.Model {
             public void subscribe(ObservableEmitter emitter) throws Exception {
                 SettlementBean settlementBean=new SettlementBean();
                 settlementBean.setWeight("15");
-                settlementBean.setPrice("25");
+                settlementBean.setPrice("0");
                 emitter.onNext(settlementBean);
                 emitter.onComplete();
             }
@@ -66,7 +66,7 @@ public class ArticleSettlementModel implements ArticleSettlementContract.Model {
      * @return
      */
     @Override
-    public Observable<ResponseBean<RecoveryProceedsBean>> updateWeight(String weight, String type) {
-        return ApiEngine.getInstance().getApiService().updateWeight(weight, type);
+    public Observable<ResponseBean<RecoveryProceedsBean>> updateWeight(String weight,String oldweight, String type) {
+        return ApiEngine.getInstance().getApiService().updateWeight(weight,oldweight, type);
     }
 }

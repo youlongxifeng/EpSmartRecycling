@@ -58,7 +58,7 @@ public class ArticleSettlementPresenter extends ArticleSettlementContract.Presen
             public void onNext(SettlementBean stringResponseBean) {
                 if (mView != null) {
                     SettlementBean settlementBean = new SettlementBean();
-                    settlementBean.setPrice(String.valueOf(recoveryTypeBean.getmRecoveryPrice()));
+                    settlementBean.setPrice("");
                     settlementBean.setWeight("26");
                     mView.presentArticleWeightSuccess(settlementBean);
                 } else {
@@ -71,7 +71,7 @@ public class ArticleSettlementPresenter extends ArticleSettlementContract.Presen
             public void onError(ApiException e) {
                 if (mView != null) {
                     SettlementBean settlementBean = new SettlementBean();
-                    settlementBean.setPrice(String.valueOf(recoveryTypeBean.getmRecoveryPrice()));
+                    settlementBean.setPrice("");
                     settlementBean.setWeight("26");
                     mView.presentArticleWeightSuccess(settlementBean);
                 } else {
@@ -92,9 +92,9 @@ public class ArticleSettlementPresenter extends ArticleSettlementContract.Presen
      * 商报物品重量
      */
     @Override
-    void updateWeight(String weight, String type) {
+    void updateWeight(String weight,String oldweight, String type) {
         HttpDisposableObserver<ResponseBean<RecoveryProceedsBean>> disposableObserver = getDisposableObserver();
-        mModel.updateWeight(weight, type)
+        mModel.updateWeight(weight,oldweight, type)
                 .compose(RxSchedulers.<ResponseBean<RecoveryProceedsBean>>switchObservableThread())
                 .subscribe(disposableObserver);
         addSubscribe(disposableObserver);
@@ -110,8 +110,8 @@ public class ArticleSettlementPresenter extends ArticleSettlementContract.Presen
                 if (mView != null) {
                     // RecoveryProceedsBean singleDetailsBean=recoveryTypeBeans.getData();
                     RecoveryProceedsBean proceedsBean = new RecoveryProceedsBean();
-                    proceedsBean.setmProceeds("25");
-                    proceedsBean.setmCompany("15");
+                    proceedsBean.setProceeds("25");//当前受益
+                    proceedsBean.setCompany("元");
                     mView.updateProceedsSuccess(proceedsBean);
                 } else {
                     if(mView!=null)
@@ -123,8 +123,8 @@ public class ArticleSettlementPresenter extends ArticleSettlementContract.Presen
             public void onError(ApiException e) {
                 if (mView != null) {
                     RecoveryProceedsBean proceedsBean = new RecoveryProceedsBean();
-                    proceedsBean.setmProceeds("25");
-                    proceedsBean.setmCompany("元");
+                    proceedsBean.setProceeds("25");
+                    proceedsBean.setCompany("元");
                     mView.updateProceedsSuccess(proceedsBean);
                 } else {
                     if(mView!=null)

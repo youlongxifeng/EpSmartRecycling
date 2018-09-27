@@ -14,6 +14,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * @Author: Administrator
@@ -21,8 +22,6 @@ import retrofit2.http.Path;
  * @description: （添加一句描述）
  */
 public interface ApiService {
-    @GET("api/data/Android/10/{page}")
-    Observable<List<RecoveryTypeBean>> getGank(@Path("page") String page);
 
     /**
      * 登录方法
@@ -32,6 +31,15 @@ public interface ApiService {
     Flowable<ResponseBean<UserBean>> userLogin(@Field("username") String username, @Field("password") String password);
 
     /**
+     * 获取回收类型列表
+     * @param pageSize
+     * @param curPage
+     * @return
+     */
+    @GET("faxianhuanbao/recoverytype")
+    Observable<List<RecoveryTypeBean>> getrecoveryTypesData(@Query("page_size") int pageSize, @Query("page") int curPage);
+
+    /**
      * 上报回收物品重量
      * @param weight
      * @param type
@@ -39,7 +47,7 @@ public interface ApiService {
      */
     @FormUrlEncoded
     @POST("faxianhuanbao/updateweight")
-    Observable<ResponseBean<RecoveryProceedsBean>> updateWeight(@Field("weight") String weight, @Field("type") String type);
+    Observable<ResponseBean<RecoveryProceedsBean>> updateWeight(@Field("weight") String weight, @Field("type") String type,@Field("oldweight") String oldweight);
 
 
 

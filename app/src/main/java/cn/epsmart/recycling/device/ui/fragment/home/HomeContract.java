@@ -48,7 +48,7 @@ public interface HomeContract {
     interface Model extends BaseModel {
 
 
-        Observable<List<RecoveryTypeBean>> getDeliveryData();
+        Observable<List<RecoveryTypeBean>> getDeliveryData( int pageSize, int curPage);
 
     }
 
@@ -59,18 +59,11 @@ public interface HomeContract {
         abstract void exitLogon();
 
         /**
-         * 获取投递类型数据
+         * 获取回收类型数据
          *
          * @param maps
          */
         public abstract void getDeliveryData(Map<String, String> maps);
-
-        /**
-         * 收益明细
-         *
-         * @param maps
-         */
-        public abstract void getObviousIncomeData(Map<String, String> maps);
 
 
     }
