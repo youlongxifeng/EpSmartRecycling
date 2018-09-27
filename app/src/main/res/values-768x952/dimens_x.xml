@@ -41,5 +41,6 @@
     <dimen name="x_480">240px</dimen>
     <dimen name="x_640">320px</dimen>
     <dimen name="x_680">340px</dimen>
+    <dimen name="x_780">390px</dimen>
     <dimen name="x_8">4px</dimen>
 </resources>

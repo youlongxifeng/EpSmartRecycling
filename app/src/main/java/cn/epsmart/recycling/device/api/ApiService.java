@@ -2,8 +2,10 @@ package cn.epsmart.recycling.device.api;
 
 import java.util.List;
 
+import cn.epsmart.recycling.device.entity.RecoveryProceedsBean;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
 import cn.epsmart.recycling.device.entity.ResponseBean;
+import cn.epsmart.recycling.device.entity.SettlementBean;
 import cn.epsmart.recycling.device.entity.UserBean;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
@@ -28,4 +30,18 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("faxianhuanbao/login")
     Flowable<ResponseBean<UserBean>> userLogin(@Field("username") String username, @Field("password") String password);
+
+    /**
+     * 上报回收物品重量
+     * @param weight
+     * @param type
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("faxianhuanbao/updateweight")
+    Observable<ResponseBean<RecoveryProceedsBean>> updateWeight(@Field("weight") String weight, @Field("type") String type);
+
+
+
+
 }

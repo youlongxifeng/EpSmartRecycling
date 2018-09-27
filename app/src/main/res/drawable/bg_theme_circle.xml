@@ -5,7 +5,7 @@
         <shape>
             <corners android:radius="4dp" />
             <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp" />
-            <solid android:alpha="0.3" android:color="@color/theme_color_primary" />
+            <solid android:alpha="0.3" android:color="@color/color_3f3f3f" />
         </shape>
     </item>
     <item android:state_pressed="true">
@@ -13,6 +13,14 @@
             <corners android:radius="4dp" />
             <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp" />
             <solid android:color="@color/colorAccent" />
+        </shape>
+    </item>
+
+    <item android:state_focused="true">
+        <shape>
+            <corners android:radius="4dp" />
+            <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp" />
+            <solid android:color="@color/color_3f3f3f" />
         </shape>
     </item>
     <item>

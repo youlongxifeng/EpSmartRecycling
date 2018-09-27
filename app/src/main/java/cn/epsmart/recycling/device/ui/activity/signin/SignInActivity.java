@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
@@ -25,6 +26,7 @@ import org.greenrobot.greendao.rx.RxDao;
 import butterknife.BindView;
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpActivity;
+import cn.epsmart.recycling.device.constant.Constant;
 import cn.epsmart.recycling.device.entity.UserBean;
 import cn.epsmart.recycling.device.ui.activity.main.MainActivity;
 import cn.epsmart.recycling.device.utils.ProgressWebView;
@@ -39,8 +41,8 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
     private final static String TAG = SignInActivity.class.getSimpleName();
     @BindView(R.id.sigin_progresswebview)
     ProgressWebView mProgresswebview;
-   /* @BindView(R.id.videoview_advertisement)
-    CustomVideoView mCustomVideoView;*/
+    /* @BindView(R.id.videoview_advertisement)
+     CustomVideoView mCustomVideoView;*/
     @BindView(R.id.btn_signin)
     Button mSignin;
     @BindView(R.id.btn_display_scavenging)
@@ -67,33 +69,13 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
     public void initView() {
         initWebView();
         initAdvertisementView();
-        mSignin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signInSuccess("");
-            }
-        });
-        mDisplayScavenging.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mProgresswebview.setVisibility(View.VISIBLE);
-                mProgresswebview.loadUrl(mQRCodeUrl);
-             //   mCustomVideoView.pause();
-            }
-        });
-        mHiddenScavenging.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mProgresswebview.setVisibility(View.GONE);
-             //   mCustomVideoView.start();
-            }
-        });
+
     }
 
     /**
      * 初始化广告界面
      */
-    private void initAdvertisementView(){
+    private void initAdvertisementView() {
       /*  mCustomVideoView.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.sport));
 
         //播放
@@ -119,10 +101,10 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
         mProgresswebview.setWebCallBack(this);
         ws.setCacheMode(WebSettings.LOAD_NO_CACHE);
         ws.setAppCacheEnabled(false);
-        mProgresswebview.addJavascriptInterface(SignInActivity.this, "android");
+        mProgresswebview.addJavascriptInterface(SignInActivity.this, "kndfunc");
 
         // 优先使用缓存，解决widget打开网页慢
-        ws.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+       // ws.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         ws.setDefaultTextEncodingName("UTF-8");
         ws.setRenderPriority(WebSettings.RenderPriority.HIGH);  //提高渲染的优先级
 
@@ -133,18 +115,7 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
                 LogUtils.i(TAG, "shouldOverrideUrlLoading url=" + url);
-                // view.loadUrl(url);
-              /* runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        signInSuccess("");
-                    }
-                });*/
+                view.loadUrl(url);
                 return true;
             }
 
@@ -208,7 +179,7 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
             mProgresswebview.removeAllViews();
             mProgresswebview.destroy();
             mProgresswebview.stopLoading();
-            mProgresswebview.removeJavascriptInterface("android");
+            mProgresswebview.removeJavascriptInterface("kndfunc");
             // 移除绑定服务，否则某些特定系统会报错
             mProgresswebview.getSettings().setJavaScriptEnabled(false);
             mProgresswebview.clearHistory();
@@ -236,13 +207,23 @@ public class SignInActivity extends BaseMvpActivity<SignInPresenter> implements 
 
     }
 
+    @JavascriptInterface
+    public void getUserInfo(String userId, String accessToken) {
+        LogUtils.i(TAG, "userId===" + userId + "  accessToken=" + accessToken);
+        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putString(Constant.USERID,userId);
+        bundle.putString(Constant.ACCESSTOKEN,accessToken);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, 1000);
+        Toast.makeText(this, "登录成功", Toast.LENGTH_LONG).show();
+    }
     /**
      * 登录失败
-     *
-     * @param fail
      */
     @JavascriptInterface
-    public void signInFail(String fail) {
+    public void callback() {
+        LogUtils.i(TAG,"==============callback=============");
     }
 
     @Override

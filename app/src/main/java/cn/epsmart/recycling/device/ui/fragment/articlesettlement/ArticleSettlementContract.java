@@ -1,5 +1,6 @@
 package cn.epsmart.recycling.device.ui.fragment.articlesettlement;
 
+import cn.epsmart.recycling.device.entity.RecoveryProceedsBean;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
 import cn.epsmart.recycling.device.entity.ResponseBean;
 import cn.epsmart.recycling.device.entity.SettlementBean;
@@ -16,29 +17,29 @@ import io.reactivex.Observable;
 public interface ArticleSettlementContract {
     interface View extends BaseView {
         /**
-         * 获取初始重量成功
+         * 第一次获取产品重量获取初始重量成功
          */
-        void InitWeightSuccess(String  str);
+        void historyWeightSuccess(SettlementBean  str);
 
         /**
-         * 获取初始重量失败
+         * 第一次获取产品重量获取初始重量失败
          */
-        void InitWeightFailed(String  str);
+        void historyWeightFailed(String  str);
 
         /**
-         * 获取交易物品重量成功
+         * 第二次获取产品重量获取交易物品重量成功
          */
-        void ArticleWeightSuccess(SettlementBean settlementBean);
+        void presentArticleWeightSuccess(SettlementBean settlementBean);
 
         /**
-         * 获取交易物品重量失败
+         * 第二次获取产品重量获取交易物品重量失败
          */
-        void ArticleWeightFailed(String  str);
+        void presentArticleWeightFailed(String  str);
 
         /**
          * 上报交易结果成功
          */
-        void updateProceedsSuccess(String  str);
+        void updateProceedsSuccess(RecoveryProceedsBean str);
 
         /**
          * 上报交易结果失败
@@ -52,38 +53,39 @@ public interface ArticleSettlementContract {
          * 获取物品初始化重量参数
          * @return
          */
-        Observable<ResponseBean<String>> getWeightParameter();
+        Observable<ResponseBean<String>> getHistoryWeightParameter();
 
         /**
          * 获取此次物品重量参数
          * @return
          */
-        Observable<ResponseBean<String>>  getArticleWeight();
+        Observable<SettlementBean>  getArticleWeight();
+
+
 
         /**
          * 上报此次物品重量到服务器
          * @return
          */
-        Observable<ResponseBean<String>>  updateProceeds();
+        Observable<ResponseBean<RecoveryProceedsBean>>  updateWeight(String weight, String type);
 
 
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
         /**
-         * 初始化当前回收桶重量获取配置参数
+         * 第一次初始化当前回收桶重量获取配置参数
          */
-        abstract void getInitWeightParameter(RecoveryTypeBean articleType);
+        abstract void getHistoryWeightParameter(RecoveryTypeBean articleType);
 
         /**
-         * 结算时获取计算重量
+         * 第二次结算时获取计算重量
          */
         abstract void getCurrentArticleWeight(RecoveryTypeBean recoveryTypeBean);
-
         /**
-         * 上报收益
+         * 上报物品重量
          */
-        abstract void updateProceeds();
+        abstract void updateWeight(String weight,String type);
 
 
     }

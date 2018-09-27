@@ -16,10 +16,10 @@ import java.util.Date;
  * @Time: 2018 2018/9/19 15:27
  * @description: （添加一句描述）
  */
-@Entity(nameInDb = "user_info", indexes = {@Index(value = "userid DESC", unique = true)})
+@Entity(nameInDb = "UserBean", indexes = {@Index(value = "_id DESC", unique = true)})
 public class UserBean extends BaseBean {
     @Id
-    private Long id;
+    private long _id;
     /**
      * 用户ID
      */
@@ -35,50 +35,59 @@ public class UserBean extends BaseBean {
      */
     @NotNull
     private String password;
-
-    @Generated(hash = 1290821070)
-    public UserBean(Long id, @NotNull String userid, @NotNull String username,
-                    @NotNull String password) {
-        this.id = id;
+    @NotNull
+    private String accessToken;
+    @Generated(hash = 117343974)
+    public UserBean(long _id, @NotNull String userid, @NotNull String username,
+            @NotNull String password, @NotNull String accessToken) {
+        this._id = _id;
         this.userid = userid;
         this.username = username;
         this.password = password;
+        this.accessToken = accessToken;
     }
-
     @Generated(hash = 1203313951)
     public UserBean() {
     }
-
-    public Long getId() {
-        return this.id;
+    public long get_id() {
+        return this._id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void set_id(long _id) {
+        this._id = _id;
     }
-
     public String getUserid() {
         return this.userid;
     }
-
     public void setUserid(String userid) {
         this.userid = userid;
     }
-
     public String getUsername() {
         return this.username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
-
     public String getPassword() {
         return this.password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
+    public String getAccessToken() {
+        return this.accessToken;
+    }
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 
+    @Override
+    public String toString() {
+        return "UserBean{" +
+                "_id=" + _id +
+                ", userid='" + userid + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", accessToken='" + accessToken + '\'' +
+                '}';
+    }
 }

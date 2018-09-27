@@ -25,11 +25,16 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseMvpFragment;
+import cn.epsmart.recycling.device.entity.RecoveryProceedsBean;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
+import cn.epsmart.recycling.device.entity.UserBeanDao;
 import cn.epsmart.recycling.device.observer.SmartEvents;
 import cn.epsmart.recycling.device.ui.fragment.articlesettlement.ArticleSettlementFragment;
 import cn.epsmart.recycling.device.ui.fragment.home.adapter.RecoveryTypeAdapter;
 import cn.epsmart.recycling.device.ui.fragment.home.adapter.TotalRriceAdapter;
+import cn.epsmart.recycling.device.widget.CustomVideoView;
+import cn.epsmart.recycling.device.widget.LoadContentView;
+import cn.epsmart.recycling.device.widget.LoadControlView;
 import cn.epsmart.recycling.device.widget.RecItemDecoration;
 
 /**
@@ -37,7 +42,7 @@ import cn.epsmart.recycling.device.widget.RecItemDecoration;
  * @Time: 2018 2018/9/18 18:04
  * @description: （显示首页内容）
  */
-public class HomeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View {
+public class HomeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.View ,LoadControlView.OnLoadClickListener {
     private final static String TAG = HomeFragment.class.getSimpleName();
     private static final int REQ_MODIFY_FRAGMENT = 100;
     private static final String ARG_TITLE = "arg_title";
@@ -46,18 +51,14 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     Button mExitLogon;
     @BindView(R.id.rcv_recovery_type_list)
     RecyclerView mRcvRecoveryTypeList;
-    @BindView(R.id.rcv_obvious_income_list)
-    RecyclerView mRcvTotalRrice;
     @BindView(R.id.tx_total_price)
     TextView mTotalPrice;
+    @BindView(R.id.home_content_view)
+    LoadControlView mLoadContentView;
     /**
      * 回收类型适配器
      */
     private RecoveryTypeAdapter mRecoveryTypeAdapter;
-    /**
-     * 总收益明细
-     */
-    private TotalRriceAdapter mTotalRriceAdapter;
     /**
      * 收益总额
      */
@@ -66,7 +67,8 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     /**
      * 收益明细
      */
-    private List<RecoveryTypeBean> mTotalRriceBeanList = new ArrayList<>();
+    private List<RecoveryProceedsBean> mTotalRriceBeanList = new ArrayList<>();
+    private UserBeanDao userBeanDao;
 
     public static HomeFragment newInstance() {
         Bundle args = new Bundle();
@@ -93,7 +95,6 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     @Override
     protected void initView(View view) {
         mRecoveryTypeBeanList = new ArrayList<>();
-
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 3);
         manager.setOrientation(GridLayoutManager.VERTICAL);
         mRcvRecoveryTypeList.setLayoutManager(manager);
@@ -101,25 +102,18 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         divider.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.custom_divider));
         // mRcvRecoveryTypeList.addItemDecoration(divider);
         mRcvRecoveryTypeList.addItemDecoration(new RecItemDecoration(getActivity(), R.color.color_22ffffff));
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        mRcvTotalRrice.setLayoutManager(layoutManager);
-        mRcvTotalRrice.addItemDecoration(new RecItemDecoration(getActivity(), R.color.color_22ffffff));
-        mTotalRriceAdapter = new TotalRriceAdapter(getActivity(), R.layout.price_detail_item, mTotalRriceBeanList);
-        mRcvTotalRrice.setAdapter(mTotalRriceAdapter);
-
-
     }
 
     @Override
     protected void initDate() {
-
+        mLoadContentView.showLoadView();
+        mLoadContentView.setLoadOnClickListener(this);
         SmartEvents.register(this);
         mPresenter.getDeliveryData(null);
     }
 
     @OnClick({R.id.bt_exit_logon})
-    public void onClick(View view) {
+    public void onClickView(View view) {
         switch (view.getId()) {
             case R.id.bt_exit_logon:
                 mPresenter.exitLogon();
@@ -127,6 +121,10 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
             default:
                 break;
         }
+    }
+    @Override
+    public void OnLoadClick(View view) {
+        mPresenter.getDeliveryData(null);
     }
 
 
@@ -137,6 +135,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     public void setDeliveryDataSucceed(List<RecoveryTypeBean> active) {
+        mLoadContentView.showSucceedView();
         LogUtils.i(TAG, "active=" + active);
         mRecoveryTypeBeanList.clear();
         mRecoveryTypeBeanList.addAll(active);
@@ -158,20 +157,11 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
 
     @Override
     public void setDeliveryDataFail(String fail) {
+        mLoadContentView.showErrorView();
+         }
 
-    }
 
-    @Override
-    public void setTotalRriceDataSucceed(List<RecoveryTypeBean> active) {
-        mTotalRriceBeanList.clear();
-        mTotalRriceBeanList.addAll(active);
 
-    }
-
-    @Override
-    public void setTotalRriceDataFail(String fail) {
-
-    }
 
     @Override
     public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
@@ -190,20 +180,21 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(RecoveryTypeBean event) {
+    public void onEvent(RecoveryProceedsBean event) {
         updateTotalPrice(event);
         mTotalRriceBeanList.add(event);
         LogUtils.i(TAG, " mTotalRriceBeanList=" + mTotalRriceBeanList.size() + "  event=" + event);
-
-        mTotalRriceAdapter.notifyDataSetChanged();
-        LogUtils.i(TAG, "event no Subscriber event= " + event);
     }
 
     /**
      * 更新总价格
      */
-    private void updateTotalPrice(RecoveryTypeBean recoveryTypeBean) {
-        mTotalPriceValue += recoveryTypeBean.getmRecoveryPrice();
+    private void updateTotalPrice(RecoveryProceedsBean recoveryTypeBean) {
+        LogUtils.i(TAG,"recoveryTypeBean=="+recoveryTypeBean);
+        mTotalPriceValue +=Integer.valueOf(recoveryTypeBean.getmProceeds());
         mTotalPrice.setText(mTotalPriceValue + getString(R.string.element_name));
     }
+
+
+
 }

@@ -74,14 +74,15 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ui.activity.signin.SignInActivity">
+     <!--   <activity android:name=".ui.activity.signin.SignInActivity">-->
+        <activity android:name=".ui.activity.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.main.MainActivity"></activity>
+     <!--   <activity android:name=".ui.activity.main.MainActivity"></activity>-->
 
 
         <!--高德地图start==============================-->

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/fl_recycler_state"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
+    <include
+        android:id="@+id/loading"
+        layout="@layout/data_loading_view"/>
+    <include
+        android:id="@+id/error"
+        layout="@layout/data_error_view"/>
+    <include
+        android:id="@+id/empty"
+        layout="@layout/data_empty_view"/>
+</FrameLayout>

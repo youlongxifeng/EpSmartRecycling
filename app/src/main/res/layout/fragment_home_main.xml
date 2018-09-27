@@ -20,68 +20,59 @@
         android:textColor="@color/color_theme_ffffff"
         android:textSize="@dimen/x_30" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_recovery_type_list"
+    <cn.epsmart.recycling.device.widget.LoadControlView
+        android:id="@+id/home_content_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bt_exit_logon"
+        android:layout_height="@dimen/x_780"
         android:layout_marginTop="@dimen/x_40"
-        android:orientation="vertical"
-        android:overScrollMode="never" />
-
-    <RelativeLayout
-        android:id="@+id/rl_total_income"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/rcv_recovery_type_list"
-        android:layout_marginLeft="@dimen/x_20"
-        android:layout_marginRight="@dimen/x_20"
-        android:layout_marginTop="@dimen/x_30">
-
-        <LinearLayout
-            android:id="@+id/ll_total_price"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/theme_color_primary"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/tx_total_price_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x_30"
-                android:gravity="center"
-                android:paddingBottom="@dimen/x_10"
-                android:paddingTop="@dimen/x_10"
-                android:text="@string/total_income_name"
-                android:textColor="@color/color_theme_ffffff"
-                android:textSize="@dimen/x_40" />
-
-            <TextView
-                android:id="@+id/tx_total_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/tx_total_price_tag"
-                android:gravity="left|center"
-                android:paddingBottom="@dimen/x_10"
-                android:paddingTop="@dimen/x_10"
-                android:text="25元"
-                android:textColor="@color/color_theme_ffffff"
-                android:textSize="@dimen/x_64" />
-        </LinearLayout>
+        android:layout_below="@id/bt_exit_logon">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcv_obvious_income_list"
+            android:id="@+id/rcv_recovery_type_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/ll_total_price"
-            android:layout_marginTop="@dimen/x_40"
             android:orientation="vertical"
-            android:overScrollMode="never"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:overScrollMode="never" />
+        <include layout="@layout/load_data"/>
+    </cn.epsmart.recycling.device.widget.LoadControlView>
 
-    </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_total_price"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/home_content_view"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/x_20"
+        android:layout_marginRight="@dimen/x_20"
+        android:layout_marginTop="@dimen/x_30"
+        android:background="@color/theme_color_primary"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tx_total_price_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x_30"
+            android:gravity="center"
+            android:paddingBottom="@dimen/x_10"
+            android:paddingTop="@dimen/x_10"
+            android:text="@string/total_income_name"
+            android:textColor="@color/color_theme_ffffff"
+            android:textSize="@dimen/x_40" />
+
+        <TextView
+            android:id="@+id/tx_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tx_total_price_tag"
+            android:gravity="left|center"
+            android:paddingBottom="@dimen/x_10"
+            android:paddingTop="@dimen/x_10"
+            android:text="0元"
+            android:textColor="@color/color_theme_ffffff"
+            android:textSize="@dimen/x_64" />
+    </LinearLayout>
 
 </RelativeLayout>

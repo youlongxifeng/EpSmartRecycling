@@ -17,6 +17,7 @@ public class SettlementBean implements Serializable {
      */
     private String price;
 
+
     public String getWeight() {
         return weight;
     }

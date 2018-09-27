@@ -23,29 +23,25 @@ public interface HomeContract {
          * 退出登录
          */
         void exitLogon();
+
         /**
          * 获取物品类型列表成功
+         *
          * @param active
          */
         void setDeliveryDataSucceed(List<RecoveryTypeBean> active);
 
         /**
          * 获取物品类型失败
+         *
          * @param fail
          */
         void setDeliveryDataFail(String fail);
-
         /**
-         * 获取物品收益列表列表成功
-         * @param active
-         */
-        void setTotalRriceDataSucceed(List<RecoveryTypeBean> active);
+        * 没有网络
+        */
+        // void noNetwork(String noNetwork);
 
-        /**
-         * 获取物品收益列表失败
-         * @param fail
-         */
-        void setTotalRriceDataFail(String fail);
 
     }
 
@@ -62,10 +58,16 @@ public interface HomeContract {
          */
         abstract void exitLogon();
 
+        /**
+         * 获取投递类型数据
+         *
+         * @param maps
+         */
         public abstract void getDeliveryData(Map<String, String> maps);
 
         /**
          * 收益明细
+         *
          * @param maps
          */
         public abstract void getObviousIncomeData(Map<String, String> maps);

@@ -37,7 +37,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         mContext = this;
         // regular SQLite database
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "notes-db");
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "fxhb");
         Database db = helper.getWritableDb();
         // encrypted SQLCipher database
         // note: you need to add SQLCipher to your dependencies, check the build.gradle file
