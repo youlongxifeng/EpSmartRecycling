@@ -57,10 +57,7 @@ public class ArticleSettlementPresenter extends ArticleSettlementContract.Presen
             @Override
             public void onNext(SettlementBean stringResponseBean) {
                 if (mView != null) {
-                    SettlementBean settlementBean = new SettlementBean();
-                    settlementBean.setPrice("");
-                    settlementBean.setWeight("26");
-                    mView.presentArticleWeightSuccess(settlementBean);
+                    mView.presentArticleWeightSuccess(stringResponseBean);
                 } else {
                     if(mView!=null)
                     mView.presentArticleWeightFailed("失败");
@@ -93,7 +90,7 @@ public class ArticleSettlementPresenter extends ArticleSettlementContract.Presen
      */
     @Override
     void updateWeight(String weight,String oldweight, String type) {
-        HttpDisposableObserver<ResponseBean<RecoveryProceedsBean>> disposableObserver = getDisposableObserver();
+        HttpDisposableObserver<ResponseBean<RecoveryProceedsBean>> disposableObserver = getupdateWeightDisposableObserver(type);
         mModel.updateWeight(weight,oldweight, type)
                 .compose(RxSchedulers.<ResponseBean<RecoveryProceedsBean>>switchObservableThread())
                 .subscribe(disposableObserver);
@@ -103,16 +100,13 @@ public class ArticleSettlementPresenter extends ArticleSettlementContract.Presen
     }
 
 
-    private HttpDisposableObserver<ResponseBean<RecoveryProceedsBean>> getDisposableObserver() {
+    private HttpDisposableObserver<ResponseBean<RecoveryProceedsBean>> getupdateWeightDisposableObserver(final String type) {
         return new HttpDisposableObserver<ResponseBean<RecoveryProceedsBean>>() {
             @Override
-            public void onNext(ResponseBean<RecoveryProceedsBean> recoveryTypeBeans) {
+            public void onNext(ResponseBean<RecoveryProceedsBean> responseBean) {
                 if (mView != null) {
-                    // RecoveryProceedsBean singleDetailsBean=recoveryTypeBeans.getData();
-                    RecoveryProceedsBean proceedsBean = new RecoveryProceedsBean();
-                    proceedsBean.setProceeds("25");//当前受益
-                    proceedsBean.setCompany("元");
-                    mView.updateProceedsSuccess(proceedsBean);
+                    RecoveryProceedsBean recoveryProceedsBean=responseBean.getData();
+                    mView.updateProceedsSuccess(recoveryProceedsBean);
                 } else {
                     if(mView!=null)
                     mView.updateProceedsFailed("数据上报失败");

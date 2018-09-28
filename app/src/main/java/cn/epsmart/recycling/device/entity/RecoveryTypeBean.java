@@ -12,11 +12,19 @@ public class RecoveryTypeBean implements Serializable {
     /**
      * 回收类型
      */
-    private String type;
+    private String categoryId;
+    /**
+     * 回收名称
+     */
+    private String name;
     /**
      * 回收价格
      */
     private double price;
+    /**
+     * 容量  1表示100%  ，0.5表示50%
+     */
+    private double capacity;
     /**
      * 价格单位
      */
@@ -25,13 +33,6 @@ public class RecoveryTypeBean implements Serializable {
      * 回收图标
      */
     private String imgure;
-    /**
-     * 回收名称
-     */
-    private String name;
-    private String mRecoveryType;
-    private int mIcon;
-    private float mRecoveryPrice;
 
     public long getId() {
         return id;
@@ -41,12 +42,20 @@ public class RecoveryTypeBean implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getPrice() {
@@ -55,6 +64,14 @@ public class RecoveryTypeBean implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(double capacity) {
+        this.capacity = capacity;
     }
 
     public String getCompany() {
@@ -73,50 +90,16 @@ public class RecoveryTypeBean implements Serializable {
         this.imgure = imgure;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getmRecoveryType() {
-        return mRecoveryType;
-    }
-
-    public void setmRecoveryType(String mRecoveryType) {
-        this.mRecoveryType = mRecoveryType;
-    }
-
-    public int getmIcon() {
-        return mIcon;
-    }
-
-    public void setmIcon(int mIcon) {
-        this.mIcon = mIcon;
-    }
-
-    public float getmRecoveryPrice() {
-        return mRecoveryPrice;
-    }
-
-    public void setmRecoveryPrice(float mRecoveryPrice) {
-        this.mRecoveryPrice = mRecoveryPrice;
-    }
-
     @Override
     public String toString() {
         return "RecoveryTypeBean{" +
                 "id=" + id +
-                ", type='" + type + '\'' +
-                ", price=" + price +
-                ", company='" + company + '\'' +
-                ", imgure='" + imgure + '\'' +
+                ", categoryId='" + categoryId + '\'' +
                 ", name='" + name + '\'' +
-                ", mRecoveryType='" + mRecoveryType + '\'' +
-                ", mIcon=" + mIcon +
-                ", mRecoveryPrice=" + mRecoveryPrice +
+                ", price=" + price +
+                ", capacity=" + capacity +
+                ", company='" + company + '\'' +
+                ", imgure=" + imgure +
                 '}';
     }
 }

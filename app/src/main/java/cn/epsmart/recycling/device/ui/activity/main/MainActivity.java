@@ -14,6 +14,7 @@ import cn.epsmart.recycling.device.entity.UserBean;
 import cn.epsmart.recycling.device.entity.UserBeanDao;
 import cn.epsmart.recycling.device.manage.MessageQueuingManager;
 import cn.epsmart.recycling.device.manage.serialport.Device;
+import cn.epsmart.recycling.device.manage.serialport.HardwareDefineInfo;
 import cn.epsmart.recycling.device.manage.serialport.SerialPortManager;
 import cn.epsmart.recycling.device.service.GuardService;
 import cn.epsmart.recycling.device.ui.fragment.home.HomeFragment;
@@ -77,7 +78,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> {
         int screenHeight = dm.heightPixels;
         LogUtils.i("screenWidth===" + screenWidth + "   screenHeight=" + screenHeight);
         mPresenter.updatePosition();
-        Device mDevice = new Device("dev/ttyS3", "9600");
+        Device mDevice = new Device(HardwareDefineInfo.mainSerialPortName, HardwareDefineInfo.headSerialPortBaudRate);
         SerialPortManager.instance().open(mDevice);//打开串口
         // SerialPortManager.instance().sendCommand(text);//发送串口数据
 

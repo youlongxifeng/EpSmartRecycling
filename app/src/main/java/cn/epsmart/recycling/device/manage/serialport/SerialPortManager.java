@@ -75,14 +75,14 @@ public class SerialPortManager {
      * @param baudrateString
      * @return
      */
-    public SerialPort open(String devicePath, String baudrateString) {
+    public SerialPort open(String devicePath, int baudrateString) {
         if (mSerialPort != null) {
             close();
         }
 
         try {
             File device = new File(devicePath);
-            int baurate = Integer.parseInt(baudrateString);
+            int baurate =baudrateString;// Integer.parseInt(baudrateString);
             LogUtils.i(TAG, "打开串口成功  device="+device+"  baurate="+baurate);
             mSerialPort = new SerialPort(device, baurate);
 

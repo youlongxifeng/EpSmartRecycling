@@ -62,6 +62,7 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
      * 物品重量
      */
     private String mWeightGoods;
+    private String mRecoveryTypeName;
     private String mRecoveryType;
 
 
@@ -93,8 +94,9 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
     protected void initView(View view) {
         mRecoveryTypeBean = (RecoveryTypeBean) getArguments().getSerializable(ARTICLETYPE);
         if (mRecoveryTypeBean != null) {
-            mRecoveryType=mRecoveryTypeBean.getmRecoveryType();
-            mProductType.setText(mRecoveryTypeBean.getmRecoveryType());
+            mRecoveryTypeName=mRecoveryTypeBean.getName();
+            mRecoveryType=mRecoveryTypeBean.getCategoryId();
+            mProductType.setText(mRecoveryTypeName);
             mProductWeight.setText("0");
             mProductPrice.setText("0");
             mPresenter.getHistoryWeightParameter(mRecoveryTypeBean);
@@ -187,7 +189,7 @@ public class ArticleSettlementFragment extends BaseMvpFragment<ArticleSettlement
     @Override
     public void presentArticleWeightSuccess(SettlementBean settlementBean) {
         LogUtils.i(TAG, "ArticleWeightSuccess ===" + settlementBean);
-        mProductType.setText(mRecoveryTypeBean.getmRecoveryType());
+        mProductType.setText(mRecoveryTypeBean.getName());
         mProductWeight.setText(settlementBean.getWeight() + getString(R.string.catty_name)); //获取当前新的重量
         mPresenter.updateWeight(settlementBean.getWeight(),String.valueOf(mWeightGoods),mRecoveryType);//数据获取成功后，需要上传当前重量到服务器，返回此次回收产生的收益
     }

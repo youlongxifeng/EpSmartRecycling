@@ -48,7 +48,7 @@ public class HomePresenter extends HomeContract.Presenter {
     public void getDeliveryData(Map<String, String> maps) {
         DisposableObserver<List<RecoveryTypeBean>> disposableObserver = getDisposableObserver();
         mModel.getDeliveryData(Constant.PAGE_SIZE,curpage)
-                .compose(RxSchedulers.<List<RecoveryTypeBean>>switchObservableThread())
+                .compose(RxSchedulers.<List<RecoveryTypeBean>>combine())
                 .subscribe(disposableObserver);
         addSubscribe(disposableObserver);
     }
@@ -58,6 +58,7 @@ public class HomePresenter extends HomeContract.Presenter {
         return new HttpDisposableObserver<List<RecoveryTypeBean>>() {
             @Override
             public void onNext(List<RecoveryTypeBean> recoveryTypeBeans) {
+                LogUtils.i(TAG, "(mView != null)=onNext==recoveryTypeBeans=" + recoveryTypeBeans);
                 if (mView != null) {
                     mView.setDeliveryDataSucceed(recoveryTypeBeans);
                 }
@@ -65,21 +66,21 @@ public class HomePresenter extends HomeContract.Presenter {
 
             @Override
             public void onError(ApiException e) {
+                LogUtils.i(TAG, "(mView != null)onError=e===" + e);
                 List<RecoveryTypeBean> mRecoveryTypeBeanList = new ArrayList<>();
                 for (int i = 0; i < mTypeName.length; i++) {
                     RecoveryTypeBean recoveryTypeBean = new RecoveryTypeBean();
                     recoveryTypeBean.setId(i);
-                    recoveryTypeBean.setmRecoveryPrice(mPrice[i]);
-                    recoveryTypeBean.setmRecoveryType(mTypeName[i]);
-                    recoveryTypeBean.setmIcon(mIcon[i]);
+                    recoveryTypeBean.setPrice(mPrice[i]);
+                    recoveryTypeBean.setCategoryId(String.valueOf(i));
+                    recoveryTypeBean.setName(mTypeName[i]);
+                    recoveryTypeBean.setImgure(mIcon[i]);
                     mRecoveryTypeBeanList.add(recoveryTypeBean);
                 }
-
-                LogUtils.i(TAG, "(mView != null)=" + (mView != null) + "   mRecoveryTypeBeanList=" + mRecoveryTypeBeanList);
                 if (NetWorkUtil.connection(BaseApplication.getContext())) {
                     if (mView != null) {
-                        mView.setDeliveryDataSucceed(mRecoveryTypeBeanList);
-                        //mView.setDeliveryDataFail(e.getMsg());
+                        //mView.setDeliveryDataSucceed(mRecoveryTypeBeanList);
+                        mView.setDeliveryDataFail(e.getMsg());
                     }
                 } else {                }
 

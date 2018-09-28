@@ -9,6 +9,8 @@
     <string name="press_again_exit">按下返回</string>
     <string name="catty_name">kg</string>
     <string name="element_name">元</string>
+    <string name="catty_element_name">元/kg</string>
+    <string name="public_welfare_recovery">公益回收</string>
     <!--首页start-->
     <string name="exit_logon">退出登录</string>
     <string name="total_income_name">本次总收益：</string>

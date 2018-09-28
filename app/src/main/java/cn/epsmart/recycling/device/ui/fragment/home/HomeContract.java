@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
+import cn.epsmart.recycling.device.entity.ResponseBean;
 import cn.epsmart.recycling.device.mvp.BaseModel;
 import cn.epsmart.recycling.device.mvp.BasePresenter;
 import cn.epsmart.recycling.device.mvp.BaseView;
@@ -48,7 +49,7 @@ public interface HomeContract {
     interface Model extends BaseModel {
 
 
-        Observable<List<RecoveryTypeBean>> getDeliveryData( int pageSize, int curPage);
+        Observable<ResponseBean<List<RecoveryTypeBean>>> getDeliveryData(int pageSize, int curPage);
 
     }
 

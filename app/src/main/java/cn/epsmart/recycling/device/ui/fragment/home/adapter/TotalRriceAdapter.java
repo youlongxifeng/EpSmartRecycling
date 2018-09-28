@@ -10,6 +10,7 @@ import java.util.List;
 import cn.epsmart.recycling.device.R;
 import cn.epsmart.recycling.device.base.BaseRecyclerViewAdapter;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
+import cn.epsmart.recycling.device.utils.UIUtils;
 
 /**
  * @Author: Administrator
@@ -25,8 +26,8 @@ public class TotalRriceAdapter extends BaseRecyclerViewAdapter<RecoveryTypeBean>
     protected void convert(ViewHolder holder, RecoveryTypeBean recoveryTypeBean, int position) {
         TextView recovery_type_title=holder.getView(R.id.tv_price_detail_title);
         TextView price_detail=holder.getView(R.id.tv_price_detail);
-        recovery_type_title.setText(recoveryTypeBean.getmRecoveryType()+"");
-        price_detail.setText(String.valueOf(recoveryTypeBean.getmRecoveryPrice()+""));
+        recovery_type_title.setText(recoveryTypeBean.getName()+"");
+        price_detail.setText(String.valueOf(recoveryTypeBean.getPrice()+ UIUtils.getString(R.string.catty_element_name)));
 
     }
 }

@@ -15,9 +15,9 @@
         android:layout_marginLeft="@dimen/x_20"
         android:layout_marginRight="@dimen/x_20"
         android:layout_marginTop="@dimen/x_20"
-        android:background="@drawable/bg_theme_circle"
+        android:background="@drawable/bg_recovery_type"
         android:text="@string/exit_logon"
-        android:textColor="@color/color_theme_ffffff"
+        android:textColor="@color/color_b2000000"
         android:textSize="@dimen/x_30" />
 
     <cn.epsmart.recycling.device.widget.LoadControlView
@@ -47,7 +47,7 @@
         android:layout_marginLeft="@dimen/x_20"
         android:layout_marginRight="@dimen/x_20"
         android:layout_marginTop="@dimen/x_30"
-        android:background="@color/theme_color_primary"
+        android:background="@color/color_theme_ffffff"
         android:gravity="center">
 
         <TextView
@@ -59,7 +59,7 @@
             android:paddingBottom="@dimen/x_10"
             android:paddingTop="@dimen/x_10"
             android:text="@string/total_income_name"
-            android:textColor="@color/color_theme_ffffff"
+            android:textColor="@color/color_b2000000"
             android:textSize="@dimen/x_40" />
 
         <TextView
@@ -71,7 +71,7 @@
             android:paddingBottom="@dimen/x_10"
             android:paddingTop="@dimen/x_10"
             android:text="0元"
-            android:textColor="@color/color_theme_ffffff"
+            android:textColor="@color/color_b2000000"
             android:textSize="@dimen/x_64" />
     </LinearLayout>
 

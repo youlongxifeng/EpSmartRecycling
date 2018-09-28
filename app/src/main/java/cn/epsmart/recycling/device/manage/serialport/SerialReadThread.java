@@ -29,18 +29,12 @@ public class SerialReadThread extends Thread {
     public void run() {
         byte[] received = new byte[1024];
         int size;
-
-        LogUtils.e(TAG,"开始读线程");
-
         while (true) {
-
             if (Thread.currentThread().isInterrupted()) {
                 break;
             }
             try {
-
                 int available = mInputStream.available();
-
                 if (available > 0) {
                     size = mInputStream.read(received);
                     if (size > 0) {
@@ -53,9 +47,7 @@ public class SerialReadThread extends Thread {
             } catch (IOException e) {
                 LogUtils.e(TAG,"读取数据失败");
             }
-            //Thread.yield();
         }
-
         LogUtils.e(TAG,"结束读进程");
     }
 

@@ -47,6 +47,18 @@ public class RxSchedulers {
         };
     }
 
+    public static <T> ObservableTransformer<ResponseBean<T>, T> switchObservableThread2() {
+        return new ObservableTransformer<ResponseBean<T>, T>() {
+            @Override
+            public ObservableSource<T> apply(Observable<ResponseBean<T>> upstream) {
+                return (ObservableSource<T>) upstream
+                        .subscribeOn(Schedulers.io())//指定的就是发射事件的线程
+                        .unsubscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());//指定的就是订阅者接收事件的线程。
+            }
+        };
+    }
+
 
     public static <T> ObservableTransformer<ResponseBean<T>, T> combine() {
         return new ObservableTransformer<ResponseBean<T>, T>() {

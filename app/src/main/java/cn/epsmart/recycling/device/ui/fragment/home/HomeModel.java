@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.epsmart.recycling.device.api.ApiEngine;
 import cn.epsmart.recycling.device.entity.RecoveryTypeBean;
+import cn.epsmart.recycling.device.entity.ResponseBean;
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 
@@ -14,7 +15,7 @@ import okhttp3.RequestBody;
  */
 public class HomeModel implements HomeContract.Model {
     @Override
-    public Observable<List<RecoveryTypeBean>> getDeliveryData( int pageSize, int curPage) {
+    public Observable<ResponseBean<List<RecoveryTypeBean>>> getDeliveryData(int pageSize, int curPage) {
         return ApiEngine.getInstance().getApiService().getrecoveryTypesData(   pageSize,   curPage);
     }
 }

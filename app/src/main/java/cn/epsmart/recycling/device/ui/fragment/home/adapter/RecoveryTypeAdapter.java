@@ -36,10 +36,15 @@ public class RecoveryTypeAdapter extends BaseRecyclerViewAdapter<RecoveryTypeBea
         ImageView mRecoveryTypeIcon = holder.getView(R.id.iv_recovery_type_icon);
         TextView mRecoveryTypeTitle = holder.getView(R.id.tv_recovery_type_title);
         TextView mRecoveryTypePrice = holder.getView(R.id.tv_recovery_type_price);
-        mRecoveryTypeTitle.setText(recoveryTypeBean.getmRecoveryType());
-        mRecoveryTypePrice.setText(String.valueOf(recoveryTypeBean.getmRecoveryPrice())+ UIUtils.getString(R.string.element_name)+ File.separator+UIUtils.getString(R.string.catty_name));
+        mRecoveryTypeTitle.setText(recoveryTypeBean.getName());
+        if(recoveryTypeBean.getPrice()>0){
+            mRecoveryTypePrice.setText(String.valueOf(recoveryTypeBean.getPrice())+ UIUtils.getString(R.string.catty_element_name));
+        }else {
+            mRecoveryTypePrice.setText(UIUtils.getString(R.string.public_welfare_recovery));
+        }
+
         // Glide.with(mHomeFragment).load("http://img5.imgtn.bdimg.com/it/u=1317134202,1980401867&fm=27&gp=0.jpg").into(mRecoveryTypeIcon);
         //  ImageUtil.setImageViewResId(mRecoveryTypeIcon,"http://img5.imgtn.bdimg.com/it/u=1317134202,1980401867&fm=27&gp=0.jpg",R.mipmap.ic_launcher);
-        ImageUtil.setImageViewResId(mRecoveryTypeIcon, recoveryTypeBean.getmIcon(), R.mipmap.ic_launcher);
+        ImageUtil.setImageViewResId(mRecoveryTypeIcon, recoveryTypeBean.getImgure(), R.mipmap.ic_launcher);
     }
 }

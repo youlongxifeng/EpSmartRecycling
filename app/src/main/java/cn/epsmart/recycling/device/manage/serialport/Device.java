@@ -9,12 +9,12 @@ import java.io.Serializable;
  */
 public class Device implements Serializable{
     private String path;
-    private String baudrate;
+    private int baudrate;
 
     public Device() {
     }
 
-    public Device(String path, String baudrate) {
+    public Device(String path, int baudrate) {
         this.path = path;
         this.baudrate = baudrate;
     }
@@ -27,11 +27,11 @@ public class Device implements Serializable{
         this.path = path;
     }
 
-    public String getBaudrate() {
+    public int getBaudrate() {
         return baudrate;
     }
 
-    public void setBaudrate(String baudrate) {
+    public void setBaudrate(int baudrate) {
         this.baudrate = baudrate;
     }
 

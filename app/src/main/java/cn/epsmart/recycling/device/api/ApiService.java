@@ -36,8 +36,8 @@ public interface ApiService {
      * @param curPage
      * @return
      */
-    @GET("faxianhuanbao/recoverytype")
-    Observable<List<RecoveryTypeBean>> getrecoveryTypesData(@Query("page_size") int pageSize, @Query("page") int curPage);
+    @GET("v1/fxhb/api/category/getAll")
+    Observable<ResponseBean<List<RecoveryTypeBean>>> getrecoveryTypesData(@Query("page_size") int pageSize, @Query("page") int curPage);
 
     /**
      * 上报回收物品重量
